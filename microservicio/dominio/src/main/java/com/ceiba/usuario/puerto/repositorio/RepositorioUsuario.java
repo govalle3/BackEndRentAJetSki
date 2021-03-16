@@ -44,4 +44,13 @@ public interface RepositorioUsuario {
      * @return si eligió minimo 10 minutos o no
      */
     boolean crearAlquiler(Usuario usuario);
+
+    /**
+     * Permite validar si el usuario excedió el limite de tiempo rentado
+     * @param usuario
+     * @return si eligió minimo 10 minutos o no
+     */
+    boolean pagarAlquiler(Usuario usuario);
+
+
 }

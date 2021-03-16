@@ -4,6 +4,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class ServicioCrearAlquiler {
@@ -18,6 +19,7 @@ public class ServicioCrearAlquiler {
 
     public boolean crearAlquiler(Usuario usuario) {
         validarMinimoDiezMinutos(usuario.getRentTime());
+        validWednesday();
         return this.repositorioUsuario.crearAlquiler(usuario);
     }
 
@@ -26,6 +28,11 @@ public class ServicioCrearAlquiler {
         if(eligio < 10) {
             throw new ExcepcionDuplicidad(EL_USUARIO_YA_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
         }
+    }
+
+    private Boolean validWednesday() {
+        DayOfWeek dayOfWeek = LocalDateTime.now().getDayOfWeek();
+        return dayOfWeek.name().equals(DayOfWeek.WEDNESDAY.name());
     }
 
 }
