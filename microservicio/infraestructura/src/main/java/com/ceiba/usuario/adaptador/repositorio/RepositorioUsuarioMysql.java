@@ -7,6 +7,8 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 @Repository
 public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
@@ -27,6 +29,9 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="existeExcluyendoId") 
     private static String sqlExisteExcluyendoId;
 
+    @SqlStatement(namespace="alquiler", value="crearAlquiler")
+    private static String sqlCrearAlquiler;
+
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -37,9 +42,9 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminar(Long nationalId) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
+        paramSource.addValue("nationalId", nationalId);
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
@@ -60,9 +65,19 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @Override
     public boolean existeExcluyendoId(Long nationalId, String name) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", nationalId);
+        paramSource.addValue("nationalId", nationalId);
         paramSource.addValue("name", name);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+    }
+
+    @Override
+    public boolean crearAlquiler(Usuario usuario) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nationalId", usuario.getNationalId());
+        paramSource.addValue("idJetSki", usuario.getIdJetSki());
+        paramSource.addValue("rentTime", usuario.getRentTime());
+        paramSource.addValue("dateAndTimeRent", usuario.getDateAndTimeRent());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlCrearAlquiler,paramSource, Boolean.class);
     }
 }

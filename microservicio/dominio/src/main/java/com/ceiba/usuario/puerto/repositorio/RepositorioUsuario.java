@@ -2,6 +2,8 @@ package com.ceiba.usuario.puerto.repositorio;
 
 import com.ceiba.usuario.modelo.entidad.Usuario;
 
+import java.time.LocalDateTime;
+
 public interface RepositorioUsuario {
     /**
      * Permite crear un usuario
@@ -36,4 +38,10 @@ public interface RepositorioUsuario {
      */
     boolean existeExcluyendoId(Long nationalId, String name);
 
+    /**
+     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
+     * @param usuario
+     * @return si eligió minimo 10 minutos o no
+     */
+    boolean crearAlquiler(Usuario usuario);
 }
