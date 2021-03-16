@@ -1,0 +1,1 @@
+insert into usuario (nationalId, name, dob, idJetSki,rentTime, dateAndTimeRent) values (:nationalId, :name, :dob, :idJetSki,:rentTime, :dateAndTimeRent)
