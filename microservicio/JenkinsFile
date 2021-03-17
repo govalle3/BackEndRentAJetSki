@@ -18,6 +18,7 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
+
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
@@ -33,11 +34,9 @@ pipeline {
         url:'https://github.com/govalle3/BackEndRentAJetSki'
         ]]
         ])
-        sh 'gradle --b ./microservicio/build.gradle clean compileJava'
-
       }
     }
-
+    sh 'gradle --b ./microservicio/build.gradle clean compileJava'
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
@@ -51,7 +50,6 @@ pipeline {
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
         sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-
         }
       }
     }
@@ -70,9 +68,13 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
+      junit 'build/test-results/test/*.xml' → RUTA DE TUS ARCHIVOS .XML
     }
     failure {
       echo 'This will run only if failed'
+      mail (to: 'german.ovalle@ceiba.com.co',
+            subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}")
     }
     unstable {
       echo 'This will run only if the run was marked as unstable'
@@ -82,26 +84,4 @@ pipeline {
       echo 'For example, if the Pipeline was previously failing but is now successful'
     }
   }
-stage('Sonar Analysis'){
-				steps{
-					echo '------------>Analisis de código estático<------------'
-					  withSonarQubeEnv('Sonar') {
-                        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties"
-                     }
-				}
-			}
-		}
-		post {
-			failure {
-				mail(to: 'german.ovalle@ceiba.com.co',
-				body:"Build failed in Jenkins: Project: ${env.JOB_NAME} Build /n Number: ${env.BUILD_NUMBER} URL de build: ${env.BUILD_NUMBER}/n/nPlease go to ${env.BUILD_URL} and verify the build",
-				subject: "ERROR CI: ${env.JOB_NAME}")
-			}
-		}
-
-		success {
-        			echo 'This will run only if successful'
-        junit 'build/test-results/test/*.xml' → RUTA DE TUS ARCHIVOS .XML
-        }
-
 }
