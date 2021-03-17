@@ -38,7 +38,6 @@ public class ServicioCrearAlquilerTest {
         String instantExpected = "2021-03-16T10:15:30Z";
         Clock clock = Clock.fixed(Instant.parse(instantExpected), ZoneId.of("UTC"));
         Instant instant = Instant.now(clock);
-
         Alquiler alquiler = new AlquilerTestDataBuilder().build();
         RepositorioAlquiler repositorioAlquiler = Mockito.mock(RepositorioAlquiler.class);
         when(repositorioAlquiler.existe(Mockito.anyLong())).thenReturn(false);

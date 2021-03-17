@@ -1,8 +1,6 @@
 package com.ceiba.usuario.controlador;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,38 +31,28 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void crear() throws Exception{
         // arrange
-        ComandoAlquiler usuario = new ComandoAlquilerTestDataBuilder().build();
+        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/usuarios")
+        mocMvc.perform(post("/crear")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(usuario)))
+                .content(objectMapper.writeValueAsString(alquiler)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test
-    public void actualizar() throws Exception{
+    public void pagar() throws Exception{
         // arrange
-        Long id = 2L;
-        ComandoAlquiler usuario = new ComandoAlquilerTestDataBuilder().build();
+        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(put("/usuarios/{id}",id)
+        mocMvc.perform(post("/pagar")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(usuario)))
-                .andExpect(status().isOk());
+                .content(objectMapper.writeValueAsString(alquiler)))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'valor': 2}"));
     }
 
-    @Test
-    public void eliminar() throws Exception {
-        // arrange
-        Long id = 2L;
 
-        // act - assert
-        mocMvc.perform(delete("/usuarios/{id}",id)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 }
