@@ -12,10 +12,10 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="usuario", value="existe")
+    @SqlStatement(namespace="alquiler", value="existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="usuario", value="crearAlquiler")
+    @SqlStatement(namespace="alquiler", value="crearAlquiler")
     private static String sqlCrearAlquiler;
 
     public RepositorioAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -40,5 +40,4 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
         paramSource.addValue("dateAndTimeRent", alquiler.getDateAndTimeRent());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlCrearAlquiler,paramSource, Boolean.class);
     }
-
 }

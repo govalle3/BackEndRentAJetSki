@@ -3,6 +3,7 @@ package com.ceiba.usuario.adaptador.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
@@ -16,7 +17,7 @@ public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
 
         Long nationalId = resultSet.getLong("nationalId");
         String name = resultSet.getString("name");
-        LocalDateTime dob = extraerLocalDateTime(resultSet, "dob");
+        LocalDate dob = extraerLocalDate(resultSet, "dob");
         String idJetSki = resultSet.getString("idJetSki");
         Integer rentTime = resultSet.getInt("rentTime");
         LocalDateTime dateAndTimeRent = extraerLocalDateTime(resultSet, "dateAndTimeRent");

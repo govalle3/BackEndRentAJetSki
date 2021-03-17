@@ -2,6 +2,7 @@ package com.ceiba.usuario.servicio.testdatabuilder;
 
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -9,7 +10,7 @@ public class AlquilerTestDataBuilder {
 
     private Long nationalId;
     private String name;
-    private LocalDateTime dob;
+    private LocalDate dob;
     private String idJetSki;
     private Integer rentTime;
     private LocalDateTime dateAndTimeRent;
@@ -17,7 +18,7 @@ public class AlquilerTestDataBuilder {
     public AlquilerTestDataBuilder() {
         nationalId = 109868280L;
         name = "german";
-        dob = LocalDateTime.of(1990, Month.FEBRUARY, 26, 19, 30, 40);
+        dob = LocalDate.of(1990, Month.FEBRUARY,26);
         idJetSki = "BC01";
         rentTime = 15;
         dateAndTimeRent = LocalDateTime.now();
@@ -33,7 +34,7 @@ public class AlquilerTestDataBuilder {
         return this;
     }
 
-    public AlquilerTestDataBuilder conDob(LocalDateTime dob) {
+    public AlquilerTestDataBuilder conDob(LocalDate dob) {
         this.dob = dob;
         return this;
     }

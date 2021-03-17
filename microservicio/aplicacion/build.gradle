@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
 	implementation project(':dominio')
 	implementation project(':comun:comun-aplicacion')
 	implementation project.ext.springtxt

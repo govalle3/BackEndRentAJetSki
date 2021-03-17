@@ -3,6 +3,7 @@ package com.ceiba.usuario.modelo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 public class DtoAlquiler {
     private Long nationalId;
     private String name;
-    private LocalDateTime dob;
+    private LocalDate dob;
     private String idJetSki;
     private Integer rentTime;
     private LocalDateTime dateAndTimeRent;

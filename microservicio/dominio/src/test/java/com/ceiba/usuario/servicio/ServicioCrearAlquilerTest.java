@@ -6,6 +6,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.usuario.servicio.testdatabuilder.AlquilerTestDataBuilder;
 import mockit.Expectations;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
@@ -14,6 +15,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+
 
 
 import static org.junit.Assert.*;

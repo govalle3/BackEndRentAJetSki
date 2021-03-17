@@ -3,6 +3,7 @@ package com.ceiba.usuario.modelo.entidad;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
@@ -18,12 +19,12 @@ public class Alquiler {
 
     private Long nationalId;
     private String name;
-    private LocalDateTime dob;
+    private LocalDate dob;
     private String idJetSki;
     private Integer rentTime;
     private LocalDateTime dateAndTimeRent;
 
-    public Alquiler(Long nationalId, String name, LocalDateTime dob, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) {
+    public Alquiler(Long nationalId, String name, LocalDate dob, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) {
 
         validarObligatorio(name, SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO);
         validarObligatorio(nationalId, SE_DEBE_INGRESAR_LA_CEDULA);

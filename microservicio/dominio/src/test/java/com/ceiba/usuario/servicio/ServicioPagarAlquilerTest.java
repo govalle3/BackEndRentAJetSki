@@ -12,7 +12,7 @@ public class ServicioPagarAlquilerTest {
     public void pagarAlquilerJetSkiPrecio1() {
         // Arrange
         Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC01").conRentTime(10).conDateAndTimeRent(LocalDateTime.of(2021,
-                Month.MARCH, 17, 8, 05, 00)).build();
+                Month.MARCH, 17, 14, 24, 00)).build();
         ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler();
         // Act
         double result = servicioPagarAlquiler.pagarAlquiler(alquiler);
