@@ -80,4 +80,5 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         paramSource.addValue("dateAndTimeRent", usuario.getDateAndTimeRent());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlCrearAlquiler,paramSource, Boolean.class);
     }
+
 }

@@ -11,29 +11,52 @@ public class ServicioPagarAlquiler {
     private final RepositorioUsuario repositorioUsuario;
     double multaMinuto = 0.8;
 
-    public ServicioPagarAlquiler(RepositorioUsuario repositorioUsuario){
+    public ServicioPagarAlquiler(RepositorioUsuario repositorioUsuario) {
         this.repositorioUsuario = repositorioUsuario;
     }
 
-    public boolean pagarAlquiler(Usuario usuario) {
-        validarTiempo(usuario);
-        return this.repositorioUsuario.pagarAlquiler(usuario);
+    public double pagarAlquiler(Usuario usuario) {
+
+        //this.repositorioUsuario.pagarAlquiler(usuario)
+        return calcularSiHayMultaYTotal(usuario, validarValorMinuto(usuario));
     }
 
-    private void validarTiempo(Usuario usuario) {
+    private double validarValorMinuto(Usuario usuario) {
 
+        String idJetSki = usuario.getIdJetSki();
+        double valorMinuto = 0;
+
+        if (idJetSki.toString() == "BC01") {
+            valorMinuto = 5000;
+        }
+        if (idJetSki.toString() == "BC02") {
+            valorMinuto = 7000;
+        }
+        if (idJetSki.toString() == "BC03") {
+            valorMinuto = 9000;
+        }
+        return valorMinuto;
     }
 
-    private double calcularValorMulta(Usuario usuario, double valorMinuto) {
+    private double calcularSiHayMultaYTotal(Usuario usuario, double valorMinuto) { // separar metodos en 2
+
+        double totalAPagar = 0;
+        double totalParcial = 0;
         double totalMulta = 0;
-        Integer minRent = usuario.getRentTime();
-        LocalTime rentTimeUser = usuario.getDateAndTimeRent().toLocalTime();
+
+        Integer tiempoRentado = usuario.getRentTime();
+        LocalTime fechaYHoraRentaUsuario = usuario.getDateAndTimeRent().toLocalTime();
         LocalTime localTime = LocalTime.now();
-        Integer duration  = Long.valueOf(Duration.between(rentTimeUser, localTime).toMinutes()).intValue();
-        if(duration > minRent){
-            int minutosPasados = duration - minRent;
+        Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
+
+        if (duracion > tiempoRentado) {
+
+            int minutosPasados = duracion - tiempoRentado;
             totalMulta = minutosPasados * multaMinuto * valorMinuto;
         }
-        return totalMulta;
+        totalParcial = valorMinuto * tiempoRentado;
+        totalAPagar = totalParcial + totalMulta;
+        return totalAPagar;
     }
+
 }
