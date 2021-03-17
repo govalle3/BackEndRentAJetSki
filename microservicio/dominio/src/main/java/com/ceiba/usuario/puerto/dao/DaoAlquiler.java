@@ -15,7 +15,7 @@ public interface DaoAlquiler {
 
     /**
      * Permite validar si el usuario eligió minimo 10 minutos de alquiler
-     * @param usuario
+     * @param nationalId
      * @return si eligió minimo 10 minutos o no
      */
     Alquiler buscarPornationalId(long nationalId);

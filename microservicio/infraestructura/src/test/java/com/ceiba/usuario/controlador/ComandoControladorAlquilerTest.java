@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.usuario.comando.ComandoAlquiler;
-import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
+import com.ceiba.usuario.servicio.testdatabuilder.ComandoAlquilerTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void crear() throws Exception{
         // arrange
-        ComandoAlquiler usuario = new ComandoUsuarioTestDataBuilder().build();
+        ComandoAlquiler usuario = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
         mocMvc.perform(post("/usuarios")
@@ -47,7 +47,7 @@ public class ComandoControladorAlquilerTest {
     public void actualizar() throws Exception{
         // arrange
         Long id = 2L;
-        ComandoAlquiler usuario = new ComandoUsuarioTestDataBuilder().build();
+        ComandoAlquiler usuario = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
         mocMvc.perform(put("/usuarios/{id}",id)

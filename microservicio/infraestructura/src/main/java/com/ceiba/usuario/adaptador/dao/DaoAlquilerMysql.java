@@ -19,8 +19,8 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     @SqlStatement(namespace="usuario", value="listar")
     private static String sqlListar;
 
-    @SqlStatement(namespace="usuario", value="buscarPornationalId")
-    private static String sqlbuscarPornationalId;
+    @SqlStatement(namespace="usuario", value="buscarPorNationalId")
+    private static String sqlbuscarPorNationalId;
 
     public DaoAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,6 +33,6 @@ public class DaoAlquilerMysql implements DaoAlquiler {
 
     @Override
     public Alquiler buscarPornationalId(long nationalId) {
-        return (Alquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlbuscarPornationalId, new MapeoAlquiler());
+        return (Alquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlbuscarPorNationalId, new MapeoAlquiler());
     }
 }

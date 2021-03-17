@@ -8,11 +8,9 @@ import java.time.LocalTime;
 
 public class ServicioPagarAlquiler {
 
-    private final RepositorioAlquiler repositorioAlquiler;
     double multaMinuto = 0.8;
 
-    public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
-        this.repositorioAlquiler = repositorioAlquiler;
+    public ServicioPagarAlquiler() {
     }
 
     public double pagarAlquiler(Alquiler alquiler) {

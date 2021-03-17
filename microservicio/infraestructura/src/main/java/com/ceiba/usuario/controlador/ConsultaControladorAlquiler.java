@@ -23,7 +23,7 @@ public class ConsultaControladorAlquiler {
         this.manejadorListarAlquiler = manejadorListarAlquiler;
     }
 
-    @GetMapping
+    @GetMapping(path = "/listar")
     @ApiOperation("Listar Alquiler")
     public List<DtoAlquiler> listar() {
         return this.manejadorListarAlquiler.ejecutar();
