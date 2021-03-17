@@ -15,7 +15,6 @@ public class ServicioPagarAlquiler {
 
     public double pagarAlquiler(Alquiler alquiler) {
 
-        //this.repositorioAlquiler.pagarAlquiler(alquiler)
         return calcularSiHayMultaYTotal(alquiler, validarValorMinuto(alquiler));
     }
 

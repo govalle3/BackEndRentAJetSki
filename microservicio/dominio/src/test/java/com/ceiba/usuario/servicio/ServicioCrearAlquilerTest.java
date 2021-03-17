@@ -3,8 +3,8 @@ package com.ceiba.usuario.servicio;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.usuario.servicio.testdatabuilder.AlquilerTestDataBuilder;
+import mockit.Expectations;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -49,9 +49,23 @@ public class ServicioCrearAlquilerTest {
         verify(repositorioAlquiler,times(1)).crearAlquiler(alquiler);
     }
 
-    //otra prueba escenarios de domingo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Test
     public void validarDiaMantenimiento() {
+
         Clock clock = Clock.fixed(Instant.parse("2014-12-23T10:15:30.00Z"), ZoneId.of("UTC"));
         LocalDateTime dateTimeExpected = LocalDateTime.now(clock);
         new Expectations(LocalDateTime.class) {
@@ -63,7 +77,7 @@ public class ServicioCrearAlquilerTest {
 
         LocalDateTime now = LocalDateTime.now();
 
-        assertThat(now).isEqualTo(dateTimeExpected);
+        assertEquals(now.toString(), dateTimeExpected);
 
     }
 }
