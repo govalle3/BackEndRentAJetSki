@@ -1,1 +1,1 @@
-insert into alquiler (nationalId, idJetSki, rentTime, dateAndTimeRent) values (:nationalId, :idJetSki,:rentTime, :dateAndTimeRent)
+insert into alquiler (nationalId, name, dob, idJetSki, rentTime, dateAndTimeRent) values (:nationalId, :name, :dob, :idJetSki,:rentTime, :dateAndTimeRent)

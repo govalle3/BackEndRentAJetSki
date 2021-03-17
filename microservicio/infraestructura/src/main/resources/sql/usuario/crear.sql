@@ -1,1 +1,0 @@
-insert into usuario (nationalId, name, dob) values (:nationalId, :name, :dob)

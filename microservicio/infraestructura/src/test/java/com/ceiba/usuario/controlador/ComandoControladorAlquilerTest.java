@@ -7,8 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.controlador.ComandoControladorUsuario;
+import com.ceiba.usuario.comando.ComandoAlquiler;
 import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +21,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
-public class ComandoControladorUsuarioTest {
+@WebMvcTest(ComandoControladorAlquiler.class)
+public class ComandoControladorAlquilerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -34,7 +33,7 @@ public class ComandoControladorUsuarioTest {
     @Test
     public void crear() throws Exception{
         // arrange
-        ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
+        ComandoAlquiler usuario = new ComandoUsuarioTestDataBuilder().build();
 
         // act - assert
         mocMvc.perform(post("/usuarios")
@@ -48,7 +47,7 @@ public class ComandoControladorUsuarioTest {
     public void actualizar() throws Exception{
         // arrange
         Long id = 2L;
-        ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
+        ComandoAlquiler usuario = new ComandoUsuarioTestDataBuilder().build();
 
         // act - assert
         mocMvc.perform(put("/usuarios/{id}",id)

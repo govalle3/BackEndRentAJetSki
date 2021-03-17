@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComandoUsuario{
+public class ComandoAlquiler {
 
     private Long nationalId;
     private String name;

@@ -1,29 +1,29 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.usuario.modelo.entidad.Usuario;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.usuario.modelo.entidad.Alquiler;
+import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
 public class ServicioPagarAlquiler {
 
-    private final RepositorioUsuario repositorioUsuario;
+    private final RepositorioAlquiler repositorioAlquiler;
     double multaMinuto = 0.8;
 
-    public ServicioPagarAlquiler(RepositorioUsuario repositorioUsuario) {
-        this.repositorioUsuario = repositorioUsuario;
+    public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
+        this.repositorioAlquiler = repositorioAlquiler;
     }
 
-    public double pagarAlquiler(Usuario usuario) {
+    public double pagarAlquiler(Alquiler alquiler) {
 
-        //this.repositorioUsuario.pagarAlquiler(usuario)
-        return calcularSiHayMultaYTotal(usuario, validarValorMinuto(usuario));
+        //this.repositorioAlquiler.pagarAlquiler(alquiler)
+        return calcularSiHayMultaYTotal(alquiler, validarValorMinuto(alquiler));
     }
 
-    private double validarValorMinuto(Usuario usuario) {
+    private double validarValorMinuto(Alquiler alquiler) {
 
-        String idJetSki = usuario.getIdJetSki();
+        String idJetSki = alquiler.getIdJetSki();
         double valorMinuto = 0;
 
         if (idJetSki.toString() == "BC01") {
@@ -38,14 +38,14 @@ public class ServicioPagarAlquiler {
         return valorMinuto;
     }
 
-    private double calcularSiHayMultaYTotal(Usuario usuario, double valorMinuto) { // separar metodos en 2
+    private double calcularSiHayMultaYTotal(Alquiler alquiler, double valorMinuto) { // separar metodos en 2
 
         double totalAPagar = 0;
         double totalParcial = 0;
         double totalMulta = 0;
 
-        Integer tiempoRentado = usuario.getRentTime();
-        LocalTime fechaYHoraRentaUsuario = usuario.getDateAndTimeRent().toLocalTime();
+        Integer tiempoRentado = alquiler.getRentTime();
+        LocalTime fechaYHoraRentaUsuario = alquiler.getDateAndTimeRent().toLocalTime();
         LocalTime localTime = LocalTime.now();
         Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
 

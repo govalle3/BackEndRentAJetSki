@@ -1,23 +1,23 @@
 package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.manejador.ManejadorComando;
-import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
-import com.ceiba.usuario.modelo.entidad.Usuario;
+import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
+import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
 
-public class ManejadorCrearAlquiler implements ManejadorComando<ComandoUsuario> {
+public class ManejadorCrearAlquiler implements ManejadorComando<ComandoAlquiler> {
 
-    private final FabricaUsuario fabricaUsuario;
+    private final FabricaAlquiler fabricaAlquiler;
     private final ServicioCrearAlquiler servicioCrearAlquiler;
 
-    public ManejadorCrearAlquiler(FabricaUsuario fabricaUsuario, ServicioCrearAlquiler servicioCrearAlquiler) {
-        this.fabricaUsuario = fabricaUsuario;
+    public ManejadorCrearAlquiler(FabricaAlquiler fabricaAlquiler, ServicioCrearAlquiler servicioCrearAlquiler) {
+        this.fabricaAlquiler = fabricaAlquiler;
         this.servicioCrearAlquiler = servicioCrearAlquiler;
     }
-    public void ejecutar(ComandoUsuario comandoUsuario) {
-        Usuario usuario = this.fabricaUsuario.crear(comandoUsuario);
-        this.servicioCrearAlquiler.crearAlquiler(usuario);
+    public void ejecutar(ComandoAlquiler comandoAlquiler) {
+        Alquiler alquiler = this.fabricaAlquiler.crear(comandoAlquiler);
+        this.servicioCrearAlquiler.crearAlquiler(alquiler);
     }
 
 

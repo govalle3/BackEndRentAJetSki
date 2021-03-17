@@ -1,1 +1,1 @@
-select count(1) from usuario where nationalId = :nationalId
+select count(1) from alquiler where nationalId = :nationalId

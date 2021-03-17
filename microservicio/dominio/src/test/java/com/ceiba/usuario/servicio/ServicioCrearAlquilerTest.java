@@ -1,7 +1,7 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.usuario.modelo.entidad.Usuario;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.usuario.modelo.entidad.Alquiler;
+import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
 
-public class ServicioCrearUsuarioTest {
+public class ServicioCrearAlquilerTest {
 
     @Test
     public void validarClaveLongitudMenor4Test() {
@@ -23,11 +23,11 @@ public class ServicioCrearUsuarioTest {
     @Test
     public void validarUsuarioExistenciaPreviaTest() {
         // arrange
-        Usuario usuario = new UsuarioTestDataBuilder().build();
-        RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
-        Mockito.when(repositorioUsuario.existe(Mockito.anyLong())).thenReturn(true);
-        ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioUsuario);
+        Alquiler alquiler = new UsuarioTestDataBuilder().build();
+        RepositorioAlquiler repositorioAlquiler = Mockito.mock(RepositorioAlquiler.class);
+        Mockito.when(repositorioAlquiler.existe(Mockito.anyLong())).thenReturn(true);
+        ServicioCrearAlquiler servicioCrearUsuario = new ServicioCrearAlquiler(repositorioAlquiler);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(usuario), ExcepcionDuplicidad.class,"El usuario ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioCrearUsuario.ejecutar(alquiler), ExcepcionDuplicidad.class,"El alquiler ya existe en el sistema");
     }
 }

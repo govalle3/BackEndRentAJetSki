@@ -1,6 +1,6 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
-import com.ceiba.usuario.modelo.entidad.Usuario;
+import com.ceiba.usuario.modelo.entidad.Alquiler;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +27,7 @@ public class UsuarioTestDataBuilder {
         return this;
     }
 
-    public Usuario build() {
-        return new Usuario(id,nombreUsuario, clave,fecha);
+    public Alquiler build() {
+        return new Alquiler(id,nombreUsuario, clave,fecha);
     }
 }

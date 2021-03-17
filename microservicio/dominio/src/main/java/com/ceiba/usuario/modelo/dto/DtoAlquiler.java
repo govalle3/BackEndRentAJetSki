@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-public class DtoUsuario {
+public class DtoAlquiler {
     private Long nationalId;
     private String name;
     private LocalDateTime dob;
