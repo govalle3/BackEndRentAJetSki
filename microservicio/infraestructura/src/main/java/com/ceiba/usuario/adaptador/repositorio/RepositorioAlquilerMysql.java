@@ -12,10 +12,10 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="alquiler", value="existe")
+    @SqlStatement(namespace="usuario", value="existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="alquiler", value="crearAlquiler")
+    @SqlStatement(namespace="usuario", value="crearAlquiler")
     private static String sqlCrearAlquiler;
 
     public RepositorioAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
