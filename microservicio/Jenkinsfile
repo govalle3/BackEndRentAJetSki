@@ -34,7 +34,7 @@ pipeline {
         url:'https://github.com/govalle3/BackEndRentAJetSki'
         ]]
         ])
-      sh 'gradle --b ./microservicio/build.gradle clean compileJava'
+      sh 'gradle --b ./microservicio/build.gradle clean'
       }
     }
 
