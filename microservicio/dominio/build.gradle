@@ -10,7 +10,6 @@ repositories {
 }
 
 dependencies {
-	testImplementation project.ext.powermockito
 	implementation 'junit:junit:4.12'
     testImplementation project.ext.junit4
 	testImplementation project.ext.junit5
