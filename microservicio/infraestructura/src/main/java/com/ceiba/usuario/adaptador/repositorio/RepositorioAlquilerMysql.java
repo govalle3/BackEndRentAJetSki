@@ -34,6 +34,8 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     @Override
     public boolean crearAlquiler(Alquiler alquiler) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("name", alquiler.getName());
+        paramSource.addValue("dob", alquiler.getDob());
         paramSource.addValue("nationalId", alquiler.getNationalId());
         paramSource.addValue("idJetSki", alquiler.getIdJetSki());
         paramSource.addValue("rentTime", alquiler.getRentTime());
