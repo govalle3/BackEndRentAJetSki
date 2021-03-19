@@ -1,14 +1,13 @@
 package com.ceiba.usuario.adaptador.dao;
 
-import java.sql.Date;
+import com.ceiba.infraestructura.jdbc.MapperResult;
+import com.ceiba.usuario.modelo.dto.DtoAlquiler;
+import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.usuario.modelo.dto.DtoAlquiler;
-import org.springframework.jdbc.core.RowMapper;
 
 public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
 

@@ -17,7 +17,7 @@ public class ServicioPagarAlquilerTest {
         // Act
         double result = servicioPagarAlquiler.pagarAlquiler(alquiler);
         // Assert
-        assertEquals(result,50000,0);
+        assertEquals(result,910000,0);
     }
 
 }

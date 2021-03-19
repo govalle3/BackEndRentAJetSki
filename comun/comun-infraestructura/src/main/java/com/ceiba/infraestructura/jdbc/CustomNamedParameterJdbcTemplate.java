@@ -21,11 +21,11 @@ public class CustomNamedParameterJdbcTemplate {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 	
-	public Long crear(Object object,String sql) {
+	public boolean crear(Object object, String sql) {
 		MapSqlParameterSource paramSource = crearParametros(object);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		this.namedParameterJdbcTemplate.update(sql, paramSource,keyHolder,new String[] { "nationalId" });
-		return keyHolder.getKey().longValue();
+		return true;
 	}
 	
 	public void actualizar(Object object,String sql) {

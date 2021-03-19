@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
 
+	implementation project.ext.mysql
 	testImplementation project.ext.h2
 	testImplementation project.ext.springboottest
 	compile project.ext.springbootweb

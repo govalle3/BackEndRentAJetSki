@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+
 @RestController
 @RequestMapping("/alquiler")
 @Api(tags = { "Controlador comando alquiler"})
@@ -28,6 +29,7 @@ public class ComandoControladorAlquiler {
     public void crear(@RequestBody ComandoAlquiler comandoAlquiler) {
         manejadorCrearAlquiler.ejecutar(comandoAlquiler);
     }
+
 
     @PostMapping(path = "/pagar")
     @ApiOperation("Pagar Alquiler")
