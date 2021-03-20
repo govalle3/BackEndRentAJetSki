@@ -17,9 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorAlquiler.class)
+//@RunWith(SpringRunner.class)
+//@ContextConfiguration(classes= ApplicationMock.class)
+//@WebMvcTest(ComandoControladorAlquiler.class)
 public class ComandoControladorAlquilerTest {
 
 //    @Autowired

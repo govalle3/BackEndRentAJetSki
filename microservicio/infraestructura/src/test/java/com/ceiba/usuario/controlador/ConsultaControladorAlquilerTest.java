@@ -16,9 +16,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorAlquiler.class)
+//@RunWith(SpringRunner.class)
+//@ContextConfiguration(classes= ApplicationMock.class)
+//@WebMvcTest(ConsultaControladorAlquiler.class)
 public class ConsultaControladorAlquilerTest {
 
 //    @Autowired
