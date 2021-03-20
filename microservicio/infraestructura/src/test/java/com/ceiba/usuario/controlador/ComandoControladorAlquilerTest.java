@@ -22,11 +22,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebMvcTest(ComandoControladorAlquiler.class)
 public class ComandoControladorAlquilerTest {
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private MockMvc mocMvc;
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @Autowired
+//    private MockMvc mocMvc;
 
 //    @Test
 //    public void crear() throws Exception{

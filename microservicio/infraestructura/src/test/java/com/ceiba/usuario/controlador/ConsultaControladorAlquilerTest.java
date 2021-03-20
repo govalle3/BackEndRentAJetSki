@@ -21,8 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(ConsultaControladorAlquiler.class)
 public class ConsultaControladorAlquilerTest {
 
-    @Autowired
-    private MockMvc mocMvc;
+//    @Autowired
+//    private MockMvc mocMvc;
 
 //    @Test
 //    public void listar() throws Exception {
