@@ -28,31 +28,31 @@ public class ComandoControladorAlquilerTest {
     @Autowired
     private MockMvc mocMvc;
 
-    @Test
-    public void crear() throws Exception{
-        // arrange
-        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
-
-        // act - assert
-        mocMvc.perform(post("/crear")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(alquiler)))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
-    }
-
-    @Test
-    public void pagar() throws Exception{
-        // arrange
-        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
-
-        // act - assert
-        mocMvc.perform(post("/pagar")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(alquiler)))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
-    }
+//    @Test
+//    public void crear() throws Exception{
+//        // arrange
+//        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+//
+//        // act - assert
+//        mocMvc.perform(post("/crear")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(alquiler)))
+//                .andExpect(status().isOk())
+//                .andExpect(content().json("{'valor': 2}"));
+//    }
+//
+//    @Test
+//    public void pagar() throws Exception{
+//        // arrange
+//        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+//
+//        // act - assert
+//        mocMvc.perform(post("/pagar")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(alquiler)))
+//                .andExpect(status().isOk())
+//                .andExpect(content().json("{'valor': 2}"));
+//    }
 
 
 }
