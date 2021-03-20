@@ -19,6 +19,7 @@ dependencies {
 
 	compile project.ext.apachecommons
 	compile project.ext.springbootjdbc
+	runtimeOnly project.ext.h2
 	testImplementation project.ext.flywaytest
 
 	

@@ -26,8 +26,8 @@ public class Alquiler {
 
     public Alquiler(Long nationalId, String name, LocalDate dob, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) {
 
-        validarObligatorio(name, SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO);
         validarObligatorio(nationalId, SE_DEBE_INGRESAR_LA_CEDULA);
+        validarObligatorio(name, SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO);
         validarObligatorio(dob, SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO);
         validarObligatorio(idJetSki, SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA);
         validarObligatorio(rentTime, SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER);
