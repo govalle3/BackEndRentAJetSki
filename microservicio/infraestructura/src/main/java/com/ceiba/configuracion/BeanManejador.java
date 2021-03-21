@@ -23,4 +23,7 @@ public class BeanManejador {
     public ManejadorPagarAlquiler manejadorPagarAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, DaoAlquiler daoAlquiler) {
         return new ManejadorPagarAlquiler(servicioPagarAlquiler,daoAlquiler);
     }
+
+
+
 }

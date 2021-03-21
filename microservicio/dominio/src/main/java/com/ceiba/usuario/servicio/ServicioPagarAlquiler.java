@@ -6,7 +6,7 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class ServicioPagarAlquiler {
+public class  ServicioPagarAlquiler {
 
     double multaMinuto = 0.8;
 

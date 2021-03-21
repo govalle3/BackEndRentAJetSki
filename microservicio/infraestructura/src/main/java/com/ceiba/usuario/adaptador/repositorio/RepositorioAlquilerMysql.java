@@ -26,7 +26,6 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
-
     @Override
     public boolean existe(Long nationalId) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
@@ -39,4 +38,5 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     public boolean crearAlquiler(Alquiler alquiler) {
         return this.customNamedParameterJdbcTemplate.crear(alquiler, sqlCrearAlquiler);
     }
+
 }
