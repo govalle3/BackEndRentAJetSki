@@ -3,12 +3,14 @@ package com.ceiba.usuario.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
+import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.List;
 
 public class ServicioCrearAlquiler {
 
@@ -18,9 +20,11 @@ public class ServicioCrearAlquiler {
     private static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
     private static final String LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA = "La moto seleccionada se encuentra alquilada";
     private final RepositorioAlquiler repositorioAlquiler;
+    private final DaoAlquiler daoAlquiler;
 
-    public ServicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler){
+    public ServicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler){
         this.repositorioAlquiler = repositorioAlquiler;
+        this.daoAlquiler = daoAlquiler;
     }
 
     public void crearAlquiler(Alquiler alquiler) {
@@ -29,9 +33,6 @@ public class ServicioCrearAlquiler {
         validarEdad(alquiler.getDob());
         validarExistenciaMotoAlquilada(alquiler.getIdJetSki());
         ejecutar(alquiler);
-    }
-
-    private void validarExistenciaMotoAlquilada(String idJetSki) {
     }
 
     private void validarMinimoDiezMinutos(Integer rentTime) {
@@ -57,14 +58,18 @@ public class ServicioCrearAlquiler {
         }
     }
 
+    private void validarExistenciaMotoAlquilada(String idJetSki) {
+        if(this.daoAlquiler.existeAlquilerMoto(idJetSki)) {
+            throw new ExcepcionDuplicidad(LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
+        }
+    }
     public void ejecutar(Alquiler alquiler) {
         validarExistenciaPrevia(alquiler);
         this.repositorioAlquiler.crearAlquiler(alquiler);
     }
 
     private void validarExistenciaPrevia(Alquiler alquiler) {
-        boolean existe = this.repositorioAlquiler.existe(alquiler.getNationalId());
-        if(existe) {
+        if(this.daoAlquiler.existeUsuarioPorNationalId(alquiler.getNationalId())) {
             throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
     }

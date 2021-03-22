@@ -1,6 +1,7 @@
 package com.ceiba.usuario.controlador;
 
 import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.ComandoPago;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.Map;
 
 
 @RestController
@@ -30,12 +33,10 @@ public class ComandoControladorAlquiler {
         manejadorCrearAlquiler.ejecutar(comandoAlquiler);
     }
 
-
     @PostMapping(path = "/pagar")
     @ApiOperation("Pagar Alquiler")
-    public void pagar(@RequestBody Long nationalId) {
+    public void pagar(@RequestParam("nationalId") Long nationalId) {
         manejadorPagarAlquiler.ejecutar(nationalId);
     }
-
 
 }

@@ -1,1 +1,1 @@
-select * from alquiler where nationalId = :nationalId
+select * from pagos where nationalId = :nationalId

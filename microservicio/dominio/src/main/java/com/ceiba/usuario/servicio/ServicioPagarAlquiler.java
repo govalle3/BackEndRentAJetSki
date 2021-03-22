@@ -6,17 +6,25 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class  ServicioPagarAlquiler {
+public class ServicioPagarAlquiler {
+
+    private final RepositorioAlquiler repositorioAlquiler;
 
     double multaMinuto = 0.8;
 
-    public ServicioPagarAlquiler() {
+    public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
+        this.repositorioAlquiler = repositorioAlquiler;
     }
 
     public double pagarAlquiler(Alquiler alquiler) {
+        double valorMinuto = validarValorMinuto(alquiler);
+        double totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto);
+        double totalAPagar = sumaPagoParcialYPagoTotal(alquiler, valorMinuto, totalMulta);
+        ejecutarPago(alquiler);
+        return totalAPagar;
 
-        return calcularSiHayMultaYTotal(alquiler, validarValorMinuto(alquiler));
     }
+
 
     private double validarValorMinuto(Alquiler alquiler) {
 
@@ -35,10 +43,8 @@ public class  ServicioPagarAlquiler {
         return valorMinuto;
     }
 
-    private double calcularSiHayMultaYTotal(Alquiler alquiler, double valorMinuto) { // separar metodos en 2
+    private double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto) { // separar metodos en 2
 
-        double totalAPagar = 0;
-        double totalParcial = 0;
         double totalMulta = 0;
 
         Integer tiempoRentado = alquiler.getRentTime();
@@ -51,9 +57,22 @@ public class  ServicioPagarAlquiler {
             int minutosPasados = duracion - tiempoRentado;
             totalMulta = minutosPasados * multaMinuto * valorMinuto;
         }
+
+        return totalMulta;
+    }
+
+    private double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
+
+        double totalAPagar = 0;
+        double totalParcial = 0;
+        Integer tiempoRentado = alquiler.getRentTime();
         totalParcial = valorMinuto * tiempoRentado;
         totalAPagar = totalParcial + totalMulta;
         return totalAPagar;
+    }
+
+    private boolean ejecutarPago(Alquiler alquiler) {
+        return repositorioAlquiler.crearPago(alquiler);
     }
 
 }

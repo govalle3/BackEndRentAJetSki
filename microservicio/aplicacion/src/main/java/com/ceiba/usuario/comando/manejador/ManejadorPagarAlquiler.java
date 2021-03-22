@@ -4,6 +4,8 @@ import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
 
+import java.util.Map;
+
 public class ManejadorPagarAlquiler  {
 
     private final ServicioPagarAlquiler servicioPagarAlquiler;
@@ -15,7 +17,7 @@ public class ManejadorPagarAlquiler  {
     }
 
     public double ejecutar(Long nationalId) {
-        Alquiler alquiler = daoAlquiler.buscarPornationalId(nationalId);
+        Alquiler alquiler = daoAlquiler.buscarPorNationalId(nationalId);
         return servicioPagarAlquiler.pagarAlquiler(alquiler);
     }
 }

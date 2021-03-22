@@ -1,5 +1,6 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
 import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
@@ -9,14 +10,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanServicio {
 
+
+
     @Bean
-    public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler) {
-        return new ServicioCrearAlquiler(repositorioAlquiler);
+    public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler) {
+        return new ServicioCrearAlquiler(repositorioAlquiler, daoAlquiler);
     }
 
     @Bean
-    public ServicioPagarAlquiler servicioPagarAlquiler() {
-        return new ServicioPagarAlquiler();
+    public ServicioPagarAlquiler servicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
+        return new ServicioPagarAlquiler(repositorioAlquiler);
     }
 
 	

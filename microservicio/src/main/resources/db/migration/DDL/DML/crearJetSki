@@ -1,3 +1,0 @@
-insert into JetSki (idJetSki) values ('BC001');
-insert into JetSki (idJetSki) values ('BC002');
-insert into JetSki (idJetSki) values ('BC003');

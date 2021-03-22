@@ -1,0 +1,1 @@
+insert into pagos (idJetSKi, rentTime, totalPay, nationalId) values (:idJetSKi, :rentTime, :totalPay, :nationalId)
