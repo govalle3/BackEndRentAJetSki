@@ -5,11 +5,13 @@ import com.ceiba.usuario.comando.ComandoPago;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 
@@ -35,8 +37,8 @@ public class ComandoControladorAlquiler {
 
     @PostMapping(path = "/pagar")
     @ApiOperation("Pagar Alquiler")
-    public double pagar(@RequestParam("nationalId") Long nationalId) {
-        return manejadorPagarAlquiler.ejecutar(nationalId);
+    public double pagar(@RequestParam("nationalId") Long nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
+        return manejadorPagarAlquiler.ejecutar(nationalId, dateAndTimeCheckout);
     }
 
 }

@@ -4,7 +4,6 @@ import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import com.ceiba.usuario.puerto.dao.DaoAlquiler;
-import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
 import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
 import org.springframework.context.annotation.Bean;
@@ -14,14 +13,15 @@ import org.springframework.context.annotation.Configuration;
 public class BeanManejador {
 
 
+    // instancia los datos
     @Bean
     public ManejadorCrearAlquiler manejadorCrearAlquiler(FabricaAlquiler fabricaAlquiler, ServicioCrearAlquiler servicioCrearAlquiler) {
         return new ManejadorCrearAlquiler(fabricaAlquiler, servicioCrearAlquiler);
     }
 
     @Bean
-    public ManejadorPagarAlquiler manejadorPagarAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, DaoAlquiler daoAlquiler) {
-        return new ManejadorPagarAlquiler(servicioPagarAlquiler,daoAlquiler);
+    public ManejadorPagarAlquiler manejadorPagarAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, FabricaAlquiler fabricaAlquiler, DaoAlquiler daoAlquiler) {
+        return new ManejadorPagarAlquiler(servicioPagarAlquiler, fabricaAlquiler, daoAlquiler);
     }
 
 

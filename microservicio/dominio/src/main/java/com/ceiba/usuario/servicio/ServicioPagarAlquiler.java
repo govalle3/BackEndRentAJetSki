@@ -5,6 +5,7 @@ import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class ServicioPagarAlquiler {
@@ -19,16 +20,15 @@ public class ServicioPagarAlquiler {
 
     }
 
-    public double pagarAlquiler(DtoAlquiler dtoAlquiler) {
+    public double pagarAlquiler(Alquiler alquiler, LocalDateTime dateAndTimeCheckout) {
 
-        double valorMinuto = validarValorMinuto(dtoAlquiler);
-        double totalMulta = calcularSiHayMultaYPagoParcial(dtoAlquiler, valorMinuto);
-        double totalAPagar = sumaPagoParcialYPagoTotal(dtoAlquiler, valorMinuto, totalMulta);
-        return totalAPagar;
+        double valorMinuto = validarValorMinuto(alquiler);
+        double totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto, dateAndTimeCheckout);
+        return sumaPagoParcialYPagoTotal(alquiler, valorMinuto, totalMulta);
 
     }
 
-    private double validarValorMinuto(DtoAlquiler alquiler) {
+    private double validarValorMinuto(Alquiler alquiler) {
 
         String idJetSki = alquiler.getIdJetSki();
 
@@ -56,7 +56,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double calcularSiHayMultaYPagoParcial(DtoAlquiler alquiler, double valorMinuto) { // separar metodos en 2
+    private double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime dateAndTimeCheckout) { // separar metodos en 2
 
         double totalMulta = 0;
 
@@ -64,7 +64,7 @@ public class ServicioPagarAlquiler {
 
         LocalTime fechaYHoraRentaUsuario = alquiler.getDateAndTimeRent().toLocalTime();
 
-        LocalTime localTime = LocalTime.now();
+        LocalTime localTime = dateAndTimeCheckout.toLocalTime();
 
         Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
 
@@ -80,7 +80,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double sumaPagoParcialYPagoTotal(DtoAlquiler alquiler, double valorMinuto, double totalMulta){
+    private double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
 
         double totalAPagar = 0;
 
