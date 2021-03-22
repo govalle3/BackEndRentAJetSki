@@ -5,7 +5,7 @@ create table alquiler (
  dob date not null,
  idJetSki varchar not null,
  rentTime int not null,
- dateAndTimeRent date not null,
+ dateAndTimeRent datetime not null,
  primary key (id)
 );
 

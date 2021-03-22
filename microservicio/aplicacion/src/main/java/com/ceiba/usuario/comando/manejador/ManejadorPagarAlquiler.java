@@ -1,5 +1,6 @@
 package com.ceiba.usuario.comando.manejador;
 
+import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
@@ -17,7 +18,7 @@ public class ManejadorPagarAlquiler  {
     }
 
     public double ejecutar(Long nationalId) {
-        Alquiler alquiler = daoAlquiler.buscarPorNationalId(nationalId);
-        return servicioPagarAlquiler.pagarAlquiler(alquiler);
+        DtoAlquiler dtoAlquiler = daoAlquiler.buscarPorNationalId(nationalId);
+        return servicioPagarAlquiler.pagarAlquiler(dtoAlquiler);
     }
 }

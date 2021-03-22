@@ -1,7 +1,6 @@
 package com.ceiba.usuario.puerto.dao;
 
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
-import com.ceiba.usuario.modelo.entidad.Alquiler;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface DaoAlquiler {
      * @param nationalId
      * @return si existe un usuario registrado
      */
-    Alquiler buscarPorNationalId(Long nationalId);
+    DtoAlquiler buscarPorNationalId(Long nationalId);
 
     /**
      * Permite validar si hay una moto alquilada

@@ -1,5 +1,6 @@
 package com.ceiba.usuario.servicio;
 
+import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 
@@ -18,35 +19,34 @@ public class ServicioPagarAlquiler {
 
     }
 
-    public double pagarAlquiler(Alquiler alquiler) {
+    public double pagarAlquiler(DtoAlquiler dtoAlquiler) {
 
-        double valorMinuto = validarValorMinuto(alquiler);
-        double totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto);
-        double totalAPagar = sumaPagoParcialYPagoTotal(alquiler, valorMinuto, totalMulta);
-        ejecutarPago(alquiler);
+        double valorMinuto = validarValorMinuto(dtoAlquiler);
+        double totalMulta = calcularSiHayMultaYPagoParcial(dtoAlquiler, valorMinuto);
+        double totalAPagar = sumaPagoParcialYPagoTotal(dtoAlquiler, valorMinuto, totalMulta);
         return totalAPagar;
 
     }
 
-    private double validarValorMinuto(Alquiler alquiler) {
+    private double validarValorMinuto(DtoAlquiler alquiler) {
 
         String idJetSki = alquiler.getIdJetSki();
 
         double valorMinuto = 0;
 
-        if (idJetSki.toString() == "BC01") {
+        if (idJetSki.equals("BC001")) {
 
             valorMinuto = 5000;
 
         }
 
-        if (idJetSki.toString() == "BC02") {
+        if (idJetSki.equals("BC002")) {
 
             valorMinuto = 7000;
 
         }
 
-        if (idJetSki.toString() == "BC03") {
+        if (idJetSki.equals("BC003")) {
 
             valorMinuto = 9000;
 
@@ -56,7 +56,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto) { // separar metodos en 2
+    private double calcularSiHayMultaYPagoParcial(DtoAlquiler alquiler, double valorMinuto) { // separar metodos en 2
 
         double totalMulta = 0;
 
@@ -80,7 +80,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
+    private double sumaPagoParcialYPagoTotal(DtoAlquiler alquiler, double valorMinuto, double totalMulta){
 
         double totalAPagar = 0;
 
@@ -93,12 +93,6 @@ public class ServicioPagarAlquiler {
         totalAPagar = totalParcial + totalMulta;
 
         return totalAPagar;
-
-    }
-
-    private boolean ejecutarPago(Alquiler alquiler) {
-
-        return repositorioAlquiler.crearPago(alquiler);
 
     }
 

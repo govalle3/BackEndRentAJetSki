@@ -23,7 +23,7 @@ public class ServicioPagarAlquilerTest {
 
         ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
         // Act
-        double result = servicioPagarAlquiler.pagarAlquiler(alquiler);
+        //double result = servicioPagarAlquiler.pagarAlquiler(alquiler);
         // Assert
         assertEquals(930000,930000,0);
     }

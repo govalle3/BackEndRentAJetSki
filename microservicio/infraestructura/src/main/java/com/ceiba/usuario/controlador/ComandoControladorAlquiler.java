@@ -35,8 +35,8 @@ public class ComandoControladorAlquiler {
 
     @PostMapping(path = "/pagar")
     @ApiOperation("Pagar Alquiler")
-    public void pagar(@RequestParam("nationalId") Long nationalId) {
-        manejadorPagarAlquiler.ejecutar(nationalId);
+    public double pagar(@RequestParam("nationalId") Long nationalId) {
+        return manejadorPagarAlquiler.ejecutar(nationalId);
     }
 
 }

@@ -39,8 +39,10 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     }
 
     @Override
-    public Alquiler buscarPorNationalId(Long nationalId) {
-        return (Alquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlbuscarPorNationalId, new MapeoAlquiler());
+    public DtoAlquiler buscarPorNationalId(Long nationalId) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nationalId", nationalId);
+        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlbuscarPorNationalId, paramSource, new MapeoAlquiler());
     }
 
     @Override
