@@ -11,7 +11,7 @@ public class ServicioPagarAlquiler {
 
     private final RepositorioAlquiler repositorioAlquiler;
 
-    double multaMinuto = 0.8;
+    double multaMinuto = 1.2;
 
     public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
 
