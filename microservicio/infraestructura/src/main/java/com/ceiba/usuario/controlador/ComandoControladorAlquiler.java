@@ -1,7 +1,6 @@
 package com.ceiba.usuario.controlador;
 
 import com.ceiba.usuario.comando.ComandoAlquiler;
-import com.ceiba.usuario.comando.ComandoPago;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/alquiler")
 @Api(tags = { "Controlador comando alquiler"})
@@ -29,9 +28,11 @@ public class ComandoControladorAlquiler {
         this.manejadorPagarAlquiler = manejadorPagarAlquiler;
     }
 
+
+
     @PostMapping(path = "/crear")
     @ApiOperation("Crear Alquiler")
-    public void crear(@RequestBody ComandoAlquiler comandoAlquiler) {
+    public void crear(@RequestBody ComandoAlquiler comandoAlquiler ){
         manejadorCrearAlquiler.ejecutar(comandoAlquiler);
     }
 
