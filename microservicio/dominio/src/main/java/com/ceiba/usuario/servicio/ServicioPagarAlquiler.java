@@ -7,6 +7,7 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ServicioPagarAlquiler {
 
@@ -64,7 +65,7 @@ public class ServicioPagarAlquiler {
 
         LocalTime fechaYHoraRentaUsuario = alquiler.getDateAndTimeRent().toLocalTime();
 
-        LocalTime localTime = dateAndTimeCheckout.toLocalTime();
+        LocalTime localTime =  dateAndTimeCheckout.toLocalTime();
 
         Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
 

@@ -20,7 +20,7 @@ public class ManejadorPagarAlquiler  {
         this.daoAlquiler = daoAlquiler;
     }
 
-    public double ejecutar(Long nationalId, LocalDateTime dateAndTimeCheckout) {
+    public double ejecutar(long nationalId, LocalDateTime dateAndTimeCheckout) {
 
         DtoAlquiler dtoAlquiler = daoAlquiler.buscarPorNationalId(nationalId);
         Alquiler alquiler = this.fabricaAlquiler.crear(dtoAlquiler);

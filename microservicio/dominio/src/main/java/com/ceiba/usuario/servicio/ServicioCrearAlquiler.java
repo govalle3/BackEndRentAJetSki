@@ -45,7 +45,7 @@ public class ServicioCrearAlquiler {
 
     private void validWednesday() {
         DayOfWeek dayOfWeek = LocalDateTime.now().getDayOfWeek();
-        boolean result = dayOfWeek.name().equals(DayOfWeek.WEDNESDAY.name());
+        boolean result = dayOfWeek.name().equals(DayOfWeek.MONDAY.name());
         if(result){
             throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
         }

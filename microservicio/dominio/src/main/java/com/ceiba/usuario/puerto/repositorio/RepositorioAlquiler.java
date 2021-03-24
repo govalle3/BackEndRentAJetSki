@@ -6,9 +6,9 @@ public interface RepositorioAlquiler {
 
 
     /**
-     * Permite validar si el alquiler eligió minimo 10 minutos de alquiler
+     * Permite crear un alquiler
      * @param alquiler
-     * @return si eligió minimo 10 minutos o no
+     * @return true para saber que fue creado
      */
     boolean crearAlquiler(Alquiler alquiler);
 

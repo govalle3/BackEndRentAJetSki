@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiOperation;
 
 import java.time.LocalDateTime;
 
-
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/alquiler")
@@ -28,8 +27,6 @@ public class ComandoControladorAlquiler {
         this.manejadorPagarAlquiler = manejadorPagarAlquiler;
     }
 
-
-
     @PostMapping(path = "/crear")
     @ApiOperation("Crear Alquiler")
     public void crear(@RequestBody ComandoAlquiler comandoAlquiler ){
@@ -38,8 +35,9 @@ public class ComandoControladorAlquiler {
 
     @PostMapping(path = "/pagar")
     @ApiOperation("Pagar Alquiler")
-    public double pagar(@RequestParam("nationalId") Long nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
-        return manejadorPagarAlquiler.ejecutar(nationalId, dateAndTimeCheckout);
+    public double pagar(@RequestParam("nationalId") String nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
+        long lonNationalId = Long.parseLong(nationalId);
+        return manejadorPagarAlquiler.ejecutar(lonNationalId, dateAndTimeCheckout);
     }
 
 }
