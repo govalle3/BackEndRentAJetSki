@@ -15,7 +15,7 @@ import java.util.List;
 public class ServicioCrearAlquiler {
 
     private static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
-    private static final String EL_USUARIO_YA_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER = "El usuario debe seleccionar minimo 10 minutos de alquiler";
+    private static final String EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER = "El usuario debe seleccionar minimo 10 minutos de alquiler";
     private static final String LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO = "Los dias miercoles no se presta servicio";
     private static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
     private static final String LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA = "La moto seleccionada se encuentra alquilada";
@@ -38,14 +38,14 @@ public class ServicioCrearAlquiler {
     private void validarMinimoDiezMinutos(Integer rentTime) {
         int eligio = rentTime;
         if(eligio < 10) {
-            throw new ExcepcionDuplicidad(EL_USUARIO_YA_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
+            throw new ExcepcionDuplicidad(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
         }
 
     }
 
     private void validWednesday() {
         DayOfWeek dayOfWeek = LocalDateTime.now().getDayOfWeek();
-        boolean result = dayOfWeek.name().equals(DayOfWeek.MONDAY.name());
+        boolean result = dayOfWeek.name().equals(DayOfWeek.WEDNESDAY.name());
         if(result){
             throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
         }

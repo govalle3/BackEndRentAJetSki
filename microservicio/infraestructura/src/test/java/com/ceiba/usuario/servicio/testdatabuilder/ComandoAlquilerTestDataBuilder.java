@@ -1,10 +1,13 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
 import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 public class ComandoAlquilerTestDataBuilder {
 
@@ -16,10 +19,13 @@ public class ComandoAlquilerTestDataBuilder {
     private LocalDateTime dateAndTimeRent;
 
     public ComandoAlquilerTestDataBuilder() {
-        nationalId = 51658654L;
-        name = "1234";
-        dob = LocalDate.of(1990, Month.FEBRUARY, 26);
-        idJetSki = "BC01";
+        nationalId = 1234L;
+        name = "German";
+        LocalDate localDate = LocalDate.of(1990, Month.FEBRUARY, 25);//For reference
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedString = localDate.format(formatter);
+        dob = LocalDate.parse(formattedString);
+        idJetSki = "BC002";
         rentTime = 15;
         dateAndTimeRent = LocalDateTime.now();
     }

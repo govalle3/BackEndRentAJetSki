@@ -15,15 +15,6 @@ create table JetSki (
  primary key (id)
 );
 
-create table pagos (
- id int(11) not null auto_increment,
- idJetSKi varchar not null,
- rentTime int not null,
- totalPay float not null,
- nationalId int not null,
- primary key (id)
-);
-
 insert into JetSki (IdJetSKi) values ('BC001');
 insert into JetSki (IdJetSKi) values ('BC002');
 insert into JetSki (IdJetSKi) values ('BC003');

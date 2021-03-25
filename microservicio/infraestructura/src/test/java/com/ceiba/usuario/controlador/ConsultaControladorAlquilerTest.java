@@ -16,25 +16,26 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-//@RunWith(SpringRunner.class)
-//@ContextConfiguration(classes= ApplicationMock.class)
-//@WebMvcTest(ConsultaControladorAlquiler.class)
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes= ApplicationMock.class)
+@WebMvcTest(ConsultaControladorAlquiler.class)
 public class ConsultaControladorAlquilerTest {
 
-//    @Autowired
-//    private MockMvc mocMvc;
+    @Autowired
+    private MockMvc mocMvc;
 
-//    @Test
-//    public void listar() throws Exception {
-//        // arrange
-//
-//        // act - assert
-//        mocMvc.perform(get("/alquiler")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect(jsonPath("$[0].name", is("test")));
-//    }
+    @Test
+    public void listar() throws Exception {
+        // arrange
 
-
+        // act - assert
+        mocMvc.perform(get("/alquiler")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name", is("test")));
+    }
 }
+
+
+

@@ -21,6 +21,6 @@ public class ComandoAlquiler {
     private LocalDate dob;
     private String idJetSki;
     private Integer rentTime;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.NONE)
+
     private LocalDateTime dateAndTimeRent;
 }
