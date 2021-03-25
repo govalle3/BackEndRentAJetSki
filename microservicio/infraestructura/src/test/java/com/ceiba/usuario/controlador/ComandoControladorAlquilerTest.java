@@ -17,9 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
@@ -32,17 +32,17 @@ public class ComandoControladorAlquilerTest {
     @Autowired
     private MockMvc mocMvc;
 
-    public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), StandardCharsets.UTF_8);
+    public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Test
     public void crear() throws Exception{
         // arrange
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
         // act - assert
-        mocMvc.perform(post("/crear")
+        mocMvc.perform(post("/alquiler/crear")
                 .contentType(APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(alquiler)));
-        System.out.println();
+                .content(objectMapper.writeValueAsString(alquiler)))
+                .andExpect(status().isOk());
 
     }
 
@@ -52,9 +52,10 @@ public class ComandoControladorAlquilerTest {
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/pagar")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(alquiler)));
+        mocMvc.perform(post("/alquiler/pagar?nationalId=51658659&dateAndTimeCheckout=2021-03-24T13:40:00")
+                .contentType(APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().string("1550000.0"));
     }
 
 }

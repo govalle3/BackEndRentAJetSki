@@ -29,11 +29,11 @@ public class ConsultaControladorAlquilerTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/alquiler")
+        mocMvc.perform(get("/alquiler/listar")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("test")));
+                .andExpect(jsonPath("$[0].name", is("Carlos")));
     }
 }
 
