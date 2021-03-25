@@ -4,7 +4,7 @@ import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 
 @Component
 public class FabricaAlquiler {

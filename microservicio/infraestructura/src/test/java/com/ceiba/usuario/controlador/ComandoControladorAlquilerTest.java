@@ -5,19 +5,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.servicio.testdatabuilder.ComandoAlquilerTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.nio.charset.Charset;
 

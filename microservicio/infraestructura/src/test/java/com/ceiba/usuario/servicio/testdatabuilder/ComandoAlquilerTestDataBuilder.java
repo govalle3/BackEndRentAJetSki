@@ -1,8 +1,6 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
-import com.ceiba.usuario.comando.ComandoAlquiler;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

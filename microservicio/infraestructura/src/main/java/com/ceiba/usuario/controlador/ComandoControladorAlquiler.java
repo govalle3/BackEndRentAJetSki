@@ -1,6 +1,6 @@
 package com.ceiba.usuario.controlador;
 
-import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;

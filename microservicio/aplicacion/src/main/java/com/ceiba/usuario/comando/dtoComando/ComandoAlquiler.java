@@ -1,4 +1,4 @@
-package com.ceiba.usuario.comando;
+package com.ceiba.usuario.comando.dtoComando;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

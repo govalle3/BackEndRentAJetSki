@@ -1,7 +1,7 @@
 package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.manejador.ManejadorComando;
-import com.ceiba.usuario.comando.ComandoAlquiler;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
