@@ -1,13 +1,11 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class ServicioPagarAlquiler {
 
@@ -29,7 +27,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double validarValorMinuto(Alquiler alquiler) {
+    public double validarValorMinuto(Alquiler alquiler) {
 
         String idJetSki = alquiler.getIdJetSki();
 
@@ -57,7 +55,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime dateAndTimeCheckout) { // separar metodos en 2
+    public double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime dateAndTimeCheckout) { // separar metodos en 2
 
         double totalMulta = 0;
 
@@ -81,7 +79,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    private double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
+    public double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
 
         double totalAPagar = 0;
 

@@ -9,16 +9,18 @@ repositories {
 	mavenCentral()
 }
 
+test {
+	finalizedBy jacocoTestReport
+}
+
 dependencies {
 
-    implementation 'org.projectlombok:lombok:1.18.18'
-	implementation 'org.projectlombok:lombok:1.18.18'
+	implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 	testImplementation project.ext.junit4
 	testImplementation project.ext.junit5
 	implementation project.ext.junit4
 	implementation project.ext.junit5
 	testImplementation project.ext.mockito
-
 	testImplementation project(':comun:comun-test')
 
 	implementation project(':comun:comun-dominio')
@@ -34,6 +36,3 @@ jacocoTestReport {
 	}
 }
 
-test {
-	finalizedBy jacocoTestReport
-}

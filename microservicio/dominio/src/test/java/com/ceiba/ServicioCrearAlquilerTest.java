@@ -1,4 +1,4 @@
-package com.ceiba.usuario.servicio;
+package com.ceiba;
 
 public class ServicioCrearAlquilerTest {
 }
