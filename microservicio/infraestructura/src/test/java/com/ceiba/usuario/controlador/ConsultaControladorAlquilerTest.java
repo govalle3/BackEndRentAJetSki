@@ -1,6 +1,6 @@
 package com.ceiba.usuario.controlador;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,7 +32,7 @@ public class ConsultaControladorAlquilerTest {
         mocMvc.perform(get("/alquiler/listar")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$", greaterThanOrEqualTo(1)))
                 .andExpect(jsonPath("$[0].name", is("Carlos")));
     }
 }
