@@ -14,11 +14,11 @@ import java.util.List;
 
 public class ServicioCrearAlquiler {
 
-    private static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
-    private static final String EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER = "El usuario debe seleccionar minimo 10 minutos de alquiler";
-    private static final String LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO = "Los dias miercoles no se presta servicio";
-    private static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
-    private static final String LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA = "La moto seleccionada se encuentra alquilada";
+    public static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
+    public static final String EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER = "El usuario debe seleccionar minimo 10 minutos de alquiler";
+    public static final String LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO = "Los dias miercoles no se presta servicio";
+    public static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
+    public static final String LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA = "La moto seleccionada se encuentra alquilada";
     private final RepositorioAlquiler repositorioAlquiler;
     private final DaoAlquiler daoAlquiler;
 
@@ -27,18 +27,20 @@ public class ServicioCrearAlquiler {
         this.daoAlquiler = daoAlquiler;
     }
 
+
     public void crearAlquiler(Alquiler alquiler) {
         validarMinimoDiezMinutos(alquiler.getRentTime());
         validWednesday();
         validarEdad(alquiler.getDob());
         validarExistenciaMotoAlquilada(alquiler.getIdJetSki());
-        ejecutar(alquiler);
+        validarExistenciaPrevia(alquiler);
+
     }
 
     private void validarMinimoDiezMinutos(Integer rentTime) {
         int eligio = rentTime;
         if(eligio < 10) {
-            throw new ExcepcionDuplicidad(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
+            throw new ExcepcionValorInvalido(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
         }
 
     }
@@ -63,14 +65,16 @@ public class ServicioCrearAlquiler {
             throw new ExcepcionDuplicidad(LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
         }
     }
-    public void ejecutar(Alquiler alquiler) {
-        validarExistenciaPrevia(alquiler);
-        this.repositorioAlquiler.crearAlquiler(alquiler);
-    }
 
     private void validarExistenciaPrevia(Alquiler alquiler) {
         if(this.daoAlquiler.existeUsuarioPorNationalId(alquiler.getNationalId())) {
             throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        ejecutar(alquiler);
     }
+    public void ejecutar(Alquiler alquiler) {
+        this.repositorioAlquiler.crearAlquiler(alquiler);
+    }
+
+
 }

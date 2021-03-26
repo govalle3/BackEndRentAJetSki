@@ -16,10 +16,10 @@ public class AlquilerTestDataBuilder {
     private LocalDateTime dateAndTimeRent;
 
     public AlquilerTestDataBuilder() {
-        nationalId = 11111L;
-        name = "german";
+        nationalId = 1098682980L;
+        name = "German";
         dob = LocalDate.of(1990, Month.FEBRUARY,26);
-        idJetSki = "BC01";
+        idJetSki = "BC001";
         rentTime = 15;
         dateAndTimeRent = LocalDateTime.now();
     }
