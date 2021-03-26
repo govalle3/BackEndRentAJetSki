@@ -27,7 +27,7 @@ public class ServicioPagarAlquilerTest {
         // Act
         double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
-        assertEquals(result,100000,0);
+        assertEquals(result, 100000, 0);
     }
 
     @Test
@@ -42,6 +42,6 @@ public class ServicioPagarAlquilerTest {
         // Act
         double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
-        assertEquals(result,118000,0);
+        assertEquals(result, 118000, 0);
     }
 }

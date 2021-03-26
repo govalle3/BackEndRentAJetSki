@@ -32,22 +32,25 @@ public class ServicioPagarAlquiler {
         String idJetSki = alquiler.getIdJetSki();
 
         double valorMinuto = 0;
+        double PrecioMoto1 = 5000;
+        double PrecioMoto2 = 7000;
+        double PrecioMoto3 = 9000;
 
         if (idJetSki.equals("BC001")) {
 
-            valorMinuto = 5000;
+            valorMinuto = PrecioMoto1;
 
         }
 
         if (idJetSki.equals("BC002")) {
 
-            valorMinuto = 7000;
+            valorMinuto = PrecioMoto2;
 
         }
 
         if (idJetSki.equals("BC003")) {
 
-            valorMinuto = 9000;
+            valorMinuto = PrecioMoto3;
 
         }
 
@@ -63,7 +66,7 @@ public class ServicioPagarAlquiler {
 
         LocalTime fechaYHoraRentaUsuario = alquiler.getDateAndTimeRent().toLocalTime();
 
-        LocalTime localTime =  dateAndTimeCheckout.toLocalTime();
+        LocalTime localTime = dateAndTimeCheckout.toLocalTime();
 
         Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
 
@@ -79,7 +82,7 @@ public class ServicioPagarAlquiler {
 
     }
 
-    public double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta){
+    public double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta) {
 
         double totalAPagar = 0;
 
