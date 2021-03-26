@@ -1,15 +1,12 @@
 package com.ceiba.usuario.modelo.entidad;
 
 
-import lombok.Getter;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-@Getter
 public class Alquiler {
     private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO = "Se debe ingresar el nombre de usuario";
     private static final String SE_DEBE_INGRESAR_LA_CEDULA = "Se debe ingresar la cédula";
@@ -40,4 +37,51 @@ public class Alquiler {
         this.dateAndTimeRent = dateAndTimeRent;
     }
 
+    public Long getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(Long nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public String getIdJetSki() {
+        return idJetSki;
+    }
+
+    public void setIdJetSki(String idJetSki) {
+        this.idJetSki = idJetSki;
+    }
+
+    public Integer getRentTime() {
+        return rentTime;
+    }
+
+    public void setRentTime(Integer rentTime) {
+        this.rentTime = rentTime;
+    }
+
+    public LocalDateTime getDateAndTimeRent() {
+        return dateAndTimeRent;
+    }
+
+    public void setDateAndTimeRent(LocalDateTime dateAndTimeRent) {
+        this.dateAndTimeRent = dateAndTimeRent;
+    }
 }
