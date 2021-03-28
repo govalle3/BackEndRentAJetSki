@@ -16,13 +16,11 @@ public class ServicioPagarAlquiler {
     private double valorMinuto = 0;
     private double totalMulta = 0;
 
-    private final RepositorioAlquiler repositorioAlquiler;
 
 
     public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
 
 
-        this.repositorioAlquiler = repositorioAlquiler;
     }
 
     public double pagarAlquiler(Alquiler alquiler, LocalDateTime dateAndTimeCheckout) {
