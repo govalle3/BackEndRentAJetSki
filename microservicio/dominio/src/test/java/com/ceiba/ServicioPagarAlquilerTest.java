@@ -31,6 +31,36 @@ public class ServicioPagarAlquilerTest {
     }
 
     @Test
+    public void pagarAlquilerJetSkiPrecio2SinMulta20Minutos() {
+        // Arrange
+        LocalDateTime checkout = LocalDateTime.of(2021,
+                Month.MARCH, 18, 13, 50, 0);
+        Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC002").conRentTime(20).
+                conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
+                        13, 30, 0)).build();
+        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        // Act
+        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        // Assert
+        assertEquals(result, 140000, 0);
+    }
+
+    @Test
+    public void pagarAlquilerJetSkiPrecio3SinMulta20Minutos() {
+        // Arrange
+        LocalDateTime checkout = LocalDateTime.of(2021,
+                Month.MARCH, 18, 13, 50, 0);
+        Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC003").conRentTime(20).
+                conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
+                        13, 30, 0)).build();
+        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        // Act
+        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        // Assert
+        assertEquals(result, 180000, 0);
+    }
+
+    @Test
     public void pagarAlquilerJetSkiPrecio1ConMulta20MinutosMas3MinutosDeMulta() {
         // Arrange
         LocalDateTime checkout = LocalDateTime.of(2021,

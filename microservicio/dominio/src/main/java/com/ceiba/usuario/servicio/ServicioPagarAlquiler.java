@@ -9,10 +9,10 @@ import java.time.LocalTime;
 
 public class ServicioPagarAlquiler {
 
-    public static final double PRECIOMOTO1 = 5000;
-    public static final double PRECIOMOTO2 = 7000;
-    public static final double PRECIOMOTO3 = 9000;
-    public static final double MULTAMINUTO = 1.2;
+    public static final double PRECIO_MOTO_1_5000 = 5000;
+    public static final double PRECIO_MOTO_2_7000 = 7000;
+    public static final double PRECIO_MOTO_3_9000 = 9000;
+    public static final double MULTA_MINUTO_1_2 = 1.2;
     private double valorMinuto = 0;
     private double totalMulta = 0;
 
@@ -37,15 +37,15 @@ public class ServicioPagarAlquiler {
 
 
         if ("BC001".equals(idJetSki)) {
-            valorMinuto = PRECIOMOTO1;
+            valorMinuto = PRECIO_MOTO_1_5000;
         }
 
         if ("BC002".equals(idJetSki)) {
-            valorMinuto = PRECIOMOTO2;
+            valorMinuto = PRECIO_MOTO_2_7000;
         }
 
         if ("BC003".equals(idJetSki)) {
-            valorMinuto = PRECIOMOTO3;
+            valorMinuto = PRECIO_MOTO_3_9000;
         }
 
         return valorMinuto;
@@ -66,7 +66,7 @@ public class ServicioPagarAlquiler {
 
             long minutosPasados = duracion - tiempoRentado;
 
-            totalMulta = minutosPasados * MULTAMINUTO * valorMinuto;
+            totalMulta = minutosPasados * MULTA_MINUTO_1_2 * valorMinuto;
 
         }
 
