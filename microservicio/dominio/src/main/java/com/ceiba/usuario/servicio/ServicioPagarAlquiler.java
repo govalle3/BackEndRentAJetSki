@@ -60,11 +60,11 @@ public class ServicioPagarAlquiler {
 
         LocalTime localTime = dateAndTimeCheckout.toLocalTime();
 
-        Integer duracion = Long.valueOf(Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes()).intValue();
+        Long duracion = Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes();
 
         if (duracion > tiempoRentado) {
 
-            int minutosPasados = duracion - tiempoRentado;
+            long minutosPasados = duracion - tiempoRentado;
 
             totalMulta = minutosPasados * MULTAMINUTO * valorMinuto;
 
