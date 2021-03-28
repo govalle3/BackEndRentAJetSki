@@ -15,6 +15,8 @@ public class ServicioPagarAlquiler {
     public static final double MULTAMINUTO = 1.2;
     double VALORMINUTO = 0;
     double TOTALMULTA = 0;
+    double TOTALAPAGAR = 0;
+    double TOTALPARCIAL = 0;
 
     private final RepositorioAlquiler repositorioAlquiler;
 
@@ -62,8 +64,6 @@ public class ServicioPagarAlquiler {
 
     public double calcularSiHayMultaYPagoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime dateAndTimeCheckout) { // separar metodos en 2
 
-        double totalMulta = 0;
-
         Integer tiempoRentado = alquiler.getRentTime();
 
         LocalTime fechaYHoraRentaUsuario = alquiler.getDateAndTimeRent().toLocalTime();
@@ -76,27 +76,25 @@ public class ServicioPagarAlquiler {
 
             int minutosPasados = duracion - tiempoRentado;
 
-            totalMulta = minutosPasados * MULTAMINUTO * valorMinuto;
+            TOTALMULTA = minutosPasados * MULTAMINUTO * valorMinuto;
 
         }
 
-        return totalMulta;
+        return TOTALMULTA;
 
     }
 
     public double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta) {
 
-        double totalAPagar = 0;
 
-        double totalParcial = 0;
 
         Integer tiempoRentado = alquiler.getRentTime();
 
-        totalParcial = valorMinuto * tiempoRentado;
+        TOTALPARCIAL = valorMinuto * tiempoRentado;
 
-        totalAPagar = totalParcial + totalMulta;
+        TOTALAPAGAR = TOTALPARCIAL + totalMulta;
 
-        return totalAPagar;
+        return TOTALAPAGAR;
 
     }
 
