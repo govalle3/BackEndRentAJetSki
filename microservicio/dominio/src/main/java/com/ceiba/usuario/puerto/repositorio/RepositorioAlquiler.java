@@ -12,15 +12,5 @@ public interface RepositorioAlquiler {
      */
     boolean crearAlquiler(Alquiler alquiler);
 
-    /**
-     * Permite crear un pago
-     * @param alquiler
-     * @return un valor bool para mostrar mostrar mensaje en vista pagado
-     */
-    boolean crearPago(Alquiler alquiler);
-
-
-
-
 
 }

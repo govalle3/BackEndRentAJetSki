@@ -12,9 +12,6 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace = "usuario", value = "crearPago")
-    private static String sqlCrearPago;
-
     @SqlStatement(namespace = "usuario", value = "crearAlquiler")
     private static String sqlCrearAlquiler;
 
@@ -26,11 +23,5 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     public boolean crearAlquiler(Alquiler alquiler) {
         return this.customNamedParameterJdbcTemplate.crear(alquiler, sqlCrearAlquiler);
     }
-
-    @Override
-    public boolean crearPago(Alquiler alquiler) {
-        return this.customNamedParameterJdbcTemplate.crear(alquiler, sqlCrearPago);
-    }
-
 
 }
