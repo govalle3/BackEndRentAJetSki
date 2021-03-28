@@ -13,8 +13,8 @@ public class ServicioPagarAlquiler {
     public static final double PRECIOMOTO2 = 7000;
     public static final double PRECIOMOTO3 = 9000;
     public static final double MULTAMINUTO = 1.2;
-    public static double VALORMINUTO = 0;
-    public static double TOTALMULTA = 0;
+    public static final double VALORMINUTO = 0;
+    public static final double TOTALMULTA = 0;
 
     private final RepositorioAlquiler repositorioAlquiler;
 
