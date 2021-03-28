@@ -12,14 +12,12 @@ public class ServicioPagarAlquiler {
     public static final double PRECIOMOTO1 = 5000;
     public static final double PRECIOMOTO2 = 7000;
     public static final double PRECIOMOTO3 = 9000;
-    public static double valorMinuto = 0;
-    public static double totalMulta = 0;
+    public static final double MULTAMINUTO = 1.2;
+    public static double VALORMINUTO = 0;
+    public static double TOTALMULTA = 0;
 
     private final RepositorioAlquiler repositorioAlquiler;
 
-
-
-    double multaMinuto = 1.2;
 
     public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
 
@@ -29,9 +27,9 @@ public class ServicioPagarAlquiler {
 
     public double pagarAlquiler(Alquiler alquiler, LocalDateTime dateAndTimeCheckout) {
 
-        valorMinuto = validarValorMinuto(alquiler);
-        totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto, dateAndTimeCheckout);
-        return sumaPagoParcialYPagoTotal(alquiler, valorMinuto, totalMulta);
+        VALORMINUTO = validarValorMinuto(alquiler);
+        TOTALMULTA = calcularSiHayMultaYPagoParcial(alquiler, VALORMINUTO, dateAndTimeCheckout);
+        return sumaPagoParcialYPagoTotal(alquiler, VALORMINUTO, TOTALMULTA);
 
     }
 
@@ -42,23 +40,23 @@ public class ServicioPagarAlquiler {
 
         if ("BC001".equals(idJetSki)) {
 
-            valorMinuto = PRECIOMOTO1;
+            VALORMINUTO = PRECIOMOTO1;
 
         }
 
         if ("BC002".equals(idJetSki)) {
 
-            valorMinuto = PRECIOMOTO2;
+            VALORMINUTO = PRECIOMOTO2;
 
         }
 
         if ("BC003".equals(idJetSki)) {
 
-            valorMinuto = PRECIOMOTO3;
+            VALORMINUTO = PRECIOMOTO3;
 
         }
 
-        return valorMinuto;
+        return VALORMINUTO;
 
     }
 
@@ -78,7 +76,7 @@ public class ServicioPagarAlquiler {
 
             int minutosPasados = duracion - tiempoRentado;
 
-            totalMulta = minutosPasados * multaMinuto * valorMinuto;
+            totalMulta = minutosPasados * MULTAMINUTO * valorMinuto;
 
         }
 
