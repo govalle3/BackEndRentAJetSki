@@ -13,10 +13,8 @@ public class ServicioPagarAlquiler {
     public static final double PRECIOMOTO2 = 7000;
     public static final double PRECIOMOTO3 = 9000;
     public static final double MULTAMINUTO = 1.2;
-    double VALORMINUTO = 0;
-    double TOTALMULTA = 0;
-    double TOTALAPAGAR = 0;
-    double TOTALPARCIAL = 0;
+    private double VALORMINUTO = 0;
+    private double TOTALMULTA = 0;
 
     private final RepositorioAlquiler repositorioAlquiler;
 
@@ -41,21 +39,15 @@ public class ServicioPagarAlquiler {
 
 
         if ("BC001".equals(idJetSki)) {
-
             VALORMINUTO = PRECIOMOTO1;
-
         }
 
         if ("BC002".equals(idJetSki)) {
-
             VALORMINUTO = PRECIOMOTO2;
-
         }
 
         if ("BC003".equals(idJetSki)) {
-
             VALORMINUTO = PRECIOMOTO3;
-
         }
 
         return VALORMINUTO;
@@ -86,15 +78,9 @@ public class ServicioPagarAlquiler {
 
     public double sumaPagoParcialYPagoTotal(Alquiler alquiler, double valorMinuto, double totalMulta) {
 
-
-
         Integer tiempoRentado = alquiler.getRentTime();
-
-        TOTALPARCIAL = valorMinuto * tiempoRentado;
-
-        TOTALAPAGAR = TOTALPARCIAL + totalMulta;
-
-        return TOTALAPAGAR;
+        double totalParcial = valorMinuto * tiempoRentado;
+        return totalParcial + totalMulta;
 
     }
 
