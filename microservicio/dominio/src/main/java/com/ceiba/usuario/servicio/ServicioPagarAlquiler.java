@@ -36,19 +36,21 @@ public class ServicioPagarAlquiler {
         double PrecioMoto2 = 7000;
         double PrecioMoto3 = 9000;
 
-        if (idJetSki.equals("BC001")) {
+
+
+        if ("BC001".equals(idJetSki)) {
 
             valorMinuto = PrecioMoto1;
 
         }
 
-        if (idJetSki.equals("BC002")) {
+        if ("BC002".equals(idJetSki)) {
 
             valorMinuto = PrecioMoto2;
 
         }
 
-        if (idJetSki.equals("BC003")) {
+        if ("BC003".equals(idJetSki)) {
 
             valorMinuto = PrecioMoto3;
 
