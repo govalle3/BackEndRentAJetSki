@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanServicio {
 
-    private RepositorioAlquiler repositorioAlquiler;
-
 
     @Bean
     public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler) {

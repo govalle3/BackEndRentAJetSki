@@ -9,20 +9,28 @@ import java.time.LocalTime;
 
 public class ServicioPagarAlquiler {
 
+    public static final double PRECIOMOTO1 = 5000;
+    public static final double PRECIOMOTO2 = 7000;
+    public static final double PRECIOMOTO3 = 9000;
+    public static double valorMinuto = 0;
+    public static double totalMulta = 0;
+
     private final RepositorioAlquiler repositorioAlquiler;
+
+
 
     double multaMinuto = 1.2;
 
     public ServicioPagarAlquiler(RepositorioAlquiler repositorioAlquiler) {
 
-        this.repositorioAlquiler = repositorioAlquiler;
 
+        this.repositorioAlquiler = repositorioAlquiler;
     }
 
     public double pagarAlquiler(Alquiler alquiler, LocalDateTime dateAndTimeCheckout) {
 
-        double valorMinuto = validarValorMinuto(alquiler);
-        double totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto, dateAndTimeCheckout);
+        valorMinuto = validarValorMinuto(alquiler);
+        totalMulta = calcularSiHayMultaYPagoParcial(alquiler, valorMinuto, dateAndTimeCheckout);
         return sumaPagoParcialYPagoTotal(alquiler, valorMinuto, totalMulta);
 
     }
@@ -31,28 +39,22 @@ public class ServicioPagarAlquiler {
 
         String idJetSki = alquiler.getIdJetSki();
 
-        double valorMinuto = 0;
-        double PrecioMoto1 = 5000;
-        double PrecioMoto2 = 7000;
-        double PrecioMoto3 = 9000;
-
-
 
         if ("BC001".equals(idJetSki)) {
 
-            valorMinuto = PrecioMoto1;
+            valorMinuto = PRECIOMOTO1;
 
         }
 
         if ("BC002".equals(idJetSki)) {
 
-            valorMinuto = PrecioMoto2;
+            valorMinuto = PRECIOMOTO2;
 
         }
 
         if ("BC003".equals(idJetSki)) {
 
-            valorMinuto = PrecioMoto3;
+            valorMinuto = PRECIOMOTO3;
 
         }
 
