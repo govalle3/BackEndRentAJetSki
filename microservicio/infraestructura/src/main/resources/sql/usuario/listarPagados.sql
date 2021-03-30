@@ -1,0 +1,1 @@
+select * from alquiler where estado = 0;

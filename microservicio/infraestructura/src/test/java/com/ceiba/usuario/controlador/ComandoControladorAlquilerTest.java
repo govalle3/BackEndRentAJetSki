@@ -50,7 +50,7 @@ public class ComandoControladorAlquilerTest {
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/alquiler/pagar?nationalId=51658659&dateAndTimeCheckout=2021-03-24T13:40:00")
+        mocMvc.perform(post("/alquiler/montoTotal?nationalId=51658659&dateAndTimeCheckout=2021-03-24T13:40:00")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().string("1550000.0"));

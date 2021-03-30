@@ -10,8 +10,11 @@ import com.ceiba.usuario.servicio.testdatabuilder.AlquilerTestDataBuilder;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.WEDNESDAY;
 import static org.mockito.Mockito.*;
 
 
@@ -89,5 +92,20 @@ public class ServicioCrearAlquilerTest {
         // Act - Assert
         BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionDuplicidad.class,
                 ServicioCrearAlquiler.EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
+    }
+
+    @Test
+    public void crearAlquilerConExcepcionLanzadaPorSerMiercoles() {
+
+        // Arrange
+        Alquiler alquiler = new AlquilerTestDataBuilder().build();
+        RepositorioAlquiler repositorioAlquiler = mock(RepositorioAlquiler.class);
+        DaoAlquiler daoAlquiler = mock(DaoAlquiler.class);
+        LocalDate localDateTime = LocalDate.from(mock(LocalDate.class).getDayOfWeek());
+        ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(repositorioAlquiler, daoAlquiler);
+        // Act - Assert
+        BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionValorInvalido.class,
+                ServicioCrearAlquiler.LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
+
     }
 }

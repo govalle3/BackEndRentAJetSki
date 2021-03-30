@@ -12,5 +12,11 @@ public interface RepositorioAlquiler {
      */
     boolean crearAlquiler(Alquiler alquiler);
 
+    /**
+     * Permite actualizar el pago de un alquiler
+     * @param alquiler
+     *
+     */
+    void actualizarEstadoPagadoAlquiler(Alquiler alquiler);
 
 }

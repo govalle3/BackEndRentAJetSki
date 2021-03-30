@@ -1,21 +1,21 @@
 package com.ceiba.usuario.consulta;
 
-import java.util.List;
-
-import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
+import com.ceiba.usuario.puerto.dao.DaoAlquiler;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class ManejadorListarAlquiler {
+public class ManejadorListarAlquilerPagados {
 
     private final DaoAlquiler daoAlquiler;
 
-    public ManejadorListarAlquiler(DaoAlquiler daoAlquiler){
+    public ManejadorListarAlquilerPagados(DaoAlquiler daoAlquiler){
         this.daoAlquiler = daoAlquiler;
     }
 
     public List<DtoAlquiler> ejecutar(){
-        return this.daoAlquiler.listar();
+        return this.daoAlquiler.listarPagados();
     }
 }

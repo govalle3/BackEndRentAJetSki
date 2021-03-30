@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 
+import java.time.LocalDateTime;
+
 @Component
 public class FabricaAlquiler {
 
-    public Alquiler crear(ComandoAlquiler comandoAlquiler) { // viene del front end el comando
+    public Alquiler crear(ComandoAlquiler comandoAlquiler) { // viene del front end
         return new Alquiler(
                 comandoAlquiler.getNationalId(),
                 comandoAlquiler.getName(),
@@ -28,6 +30,17 @@ public class FabricaAlquiler {
                 dtoAlquiler.getIdJetSki(),
                 dtoAlquiler.getRentTime(),
                 dtoAlquiler.getDateAndTimeRent()
+        );
+    }
+
+    public Alquiler crearRegistroExistente(DtoAlquiler dtoAlquiler, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) { // viene de base de datos
+        return new Alquiler(
+                dtoAlquiler.getNationalId(),
+                dtoAlquiler.getName(),
+                dtoAlquiler.getDob(),
+                idJetSki,
+                rentTime,
+                dateAndTimeRent
         );
     }
 

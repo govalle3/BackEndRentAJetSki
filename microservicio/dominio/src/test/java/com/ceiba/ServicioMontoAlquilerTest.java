@@ -1,8 +1,7 @@
 package com.ceiba;
 
 import com.ceiba.usuario.modelo.entidad.Alquiler;
-import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
-import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
+import com.ceiba.usuario.servicio.ServicioMontoAlquiler;
 import com.ceiba.usuario.servicio.testdatabuilder.AlquilerTestDataBuilder;
 import org.junit.Test;
 
@@ -11,9 +10,7 @@ import java.time.Month;
 
 import static org.junit.Assert.assertEquals;
 
-public class ServicioPagarAlquilerTest {
-
-    private RepositorioAlquiler repositorioAlquiler;
+public class ServicioMontoAlquilerTest {
 
     @Test
     public void pagarAlquilerJetSkiPrecio1SinMulta20Minutos() {
@@ -23,9 +20,9 @@ public class ServicioPagarAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC001").conRentTime(20).
                 conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
                         13, 30, 0)).build();
-        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        ServicioMontoAlquiler servicioMontoAlquiler = new ServicioMontoAlquiler();
         // Act
-        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        double result = servicioMontoAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
         assertEquals(result, 100000, 0);
     }
@@ -38,9 +35,9 @@ public class ServicioPagarAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC002").conRentTime(20).
                 conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
                         13, 30, 0)).build();
-        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        ServicioMontoAlquiler servicioMontoAlquiler = new ServicioMontoAlquiler();
         // Act
-        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        double result = servicioMontoAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
         assertEquals(result, 140000, 0);
     }
@@ -53,9 +50,9 @@ public class ServicioPagarAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC003").conRentTime(20).
                 conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
                         13, 30, 0)).build();
-        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        ServicioMontoAlquiler servicioMontoAlquiler = new ServicioMontoAlquiler();
         // Act
-        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        double result = servicioMontoAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
         assertEquals(result, 180000, 0);
     }
@@ -68,9 +65,9 @@ public class ServicioPagarAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().conIdJetSki("BC001").conRentTime(20).
                 conDateAndTimeRent(LocalDateTime.of(2021, Month.MARCH, 18,
                         13, 30, 0)).build();
-        ServicioPagarAlquiler servicioPagarAlquiler = new ServicioPagarAlquiler(repositorioAlquiler);
+        ServicioMontoAlquiler servicioMontoAlquiler = new ServicioMontoAlquiler();
         // Act
-        double result = servicioPagarAlquiler.pagarAlquiler(alquiler, checkout);
+        double result = servicioMontoAlquiler.pagarAlquiler(alquiler, checkout);
         // Assert
         assertEquals(result, 118000, 0);
     }

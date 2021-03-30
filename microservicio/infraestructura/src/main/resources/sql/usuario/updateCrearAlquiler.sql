@@ -1,1 +1,1 @@
-update alquiler set estado = :false where nationalId = :nationalId;
+update alquiler set estado=0 where nationalId = :nationalId and estado = 1;

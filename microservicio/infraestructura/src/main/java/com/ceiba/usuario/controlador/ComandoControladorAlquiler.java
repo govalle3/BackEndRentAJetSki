@@ -1,8 +1,10 @@
 package com.ceiba.usuario.controlador;
 
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
+import com.ceiba.usuario.comando.manejador.ManejadorLiberarAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
-import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
+import com.ceiba.usuario.comando.manejador.ManejadorCrearUsuario;
+import com.ceiba.usuario.comando.manejador.ManejadorMontoAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -14,30 +16,48 @@ import java.time.LocalDateTime;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/alquiler")
+@RequestMapping("/gestionar-alquiler")
 @Api(tags = { "Controlador comando alquiler"})
 public class ComandoControladorAlquiler {
 
     private final ManejadorCrearAlquiler manejadorCrearAlquiler;
-    private final ManejadorPagarAlquiler manejadorPagarAlquiler;
+    private final ManejadorMontoAlquiler manejadorMontoAlquiler;
+    private final ManejadorCrearUsuario manejadorCrearUsuario;
+    private final ManejadorLiberarAlquiler manejadorLiberarAlquiler;
 
     @Autowired
-    public ComandoControladorAlquiler(ManejadorCrearAlquiler manejadorCrearAlquiler, ManejadorPagarAlquiler manejadorPagarAlquiler) {
+    public ComandoControladorAlquiler(ManejadorCrearAlquiler manejadorCrearAlquiler, ManejadorMontoAlquiler manejadorMontoAlquiler, ManejadorCrearUsuario manejadorCrearUsuario, ManejadorLiberarAlquiler manejadorLiberarAlquiler) {
         this.manejadorCrearAlquiler = manejadorCrearAlquiler;
-        this.manejadorPagarAlquiler = manejadorPagarAlquiler;
+        this.manejadorMontoAlquiler = manejadorMontoAlquiler;
+        this.manejadorCrearUsuario = manejadorCrearUsuario;
+        this.manejadorLiberarAlquiler = manejadorLiberarAlquiler;
     }
 
-    @PostMapping(path = "/crear")
-    @ApiOperation("Crear Alquiler")
+    @PostMapping(path = "/gestionar-usuarios/alquilar")
+    @ApiOperation("Crea Usuario y un alquiler")
     public void crear(@RequestBody ComandoAlquiler comandoAlquiler ){
-        manejadorCrearAlquiler.ejecutar(comandoAlquiler);
+        manejadorCrearUsuario.registrar(comandoAlquiler);
     }
 
-    @PostMapping(path = "/pagar")
-    @ApiOperation("Pagar Alquiler")
-    public double pagar(@RequestParam("nationalId") String nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
+    @PostMapping(path = "/usuarios-registrados/alquilar")
+    @ApiOperation("Crear Alquiler con usuario registrado")
+    public void registrarAlquilerUsuarioRegistrado(@RequestParam("nationalId") String nationalId, @RequestParam("idJetSki") String idJetSki, @RequestParam("rentTime") Integer rentTime, @RequestParam("dateAndTimeRent") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeRent) {
         long lonNationalId = Long.parseLong(nationalId);
-        return manejadorPagarAlquiler.ejecutar(lonNationalId, dateAndTimeCheckout);
+        manejadorCrearAlquiler.ejecutar(lonNationalId, idJetSki, rentTime,dateAndTimeRent);
+    }
+
+    @PostMapping(path = "/gestionar-montos/monto")
+    @ApiOperation("Calcular valor renta alquiler")
+    public double montoTotal(@RequestParam("nationalId") String nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
+        long lonNationalId = Long.parseLong(nationalId);
+        return manejadorMontoAlquiler.ejecutar(lonNationalId, dateAndTimeCheckout);
+    }
+
+    @PutMapping(path = "/gestionar-pago") //
+    @ApiOperation("Actualiza estado Alquiler")
+    public void actualizarPago(@RequestParam("nationalId") String nationalId) {
+        long lonNationalId = Long.parseLong(nationalId);
+        manejadorLiberarAlquiler.actualizar(lonNationalId);
     }
 
 }

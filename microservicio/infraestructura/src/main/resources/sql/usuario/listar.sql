@@ -1,1 +1,1 @@
-select * from alquiler
+select * from alquiler;

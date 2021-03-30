@@ -19,14 +19,26 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     @SqlStatement(namespace="usuario", value="listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace="usuario", value="listarPorPagar")
+    private static String sqlListarPorPagar;
+
+    @SqlStatement(namespace="usuario", value="listarPagados")
+    private static String sqlListarPagados;
+
     @SqlStatement(namespace="usuario", value="buscarPorNationalId")
-    private static String sqlbuscarPorNationalId;
+    private static String sqlBuscarPorNationalId;
 
     @SqlStatement(namespace="usuario", value="existePorIdJetSki")
-    private static String sqlbuscarPorIdJetSki;
+    private static String sqlBuscarPorIdJetSki;
 
     @SqlStatement(namespace = "usuario", value = "existeUsuarioPorNationalId")
-    private static String sqlexisteUsuarioPorNationalId;
+    private static String sqlExisteUsuarioPorNationalId;
+
+    @SqlStatement(namespace = "usuario", value = "buscarAlquilerNoPagadoAun")
+    private static String sqlBuscarAlquilerNoPagadoAun;
+
+    @SqlStatement(namespace = "usuario", value = "buscarMontoPorNationalId")
+    private static String sqlBuscarMontoPorNationalId;
 
     public DaoAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -38,23 +50,47 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     }
 
     @Override
+    public List<DtoAlquiler> listarPorPagar() {
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarPorPagar, new MapeoAlquiler());
+    }
+
+    @Override
+    public List<DtoAlquiler> listarPagados() {
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarPagados, new MapeoAlquiler());
+    }
+
+    @Override
     public DtoAlquiler buscarPorNationalId(Long nationalId) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nationalId", nationalId);
-        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlbuscarPorNationalId, paramSource, new MapeoAlquiler());
+        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorNationalId, paramSource, new MapeoAlquiler());
     }
 
     @Override
     public boolean existeAlquilerMoto(String idJetSki) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("idJetSki", idJetSki);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlbuscarPorIdJetSki,paramSource,Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorIdJetSki,paramSource,Boolean.class);
     }
 
     @Override
     public boolean existeUsuarioPorNationalId(Long nationalId) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nationalId", nationalId);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlexisteUsuarioPorNationalId, paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuarioPorNationalId, paramSource, Boolean.class);
+    }
+
+    @Override
+    public DtoAlquiler buscarAlquilerNoPagadoAun(Long nationalId) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nationalId", nationalId);
+        return (DtoAlquiler)  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarAlquilerNoPagadoAun, paramSource, new MapeoAlquiler());
+    }
+
+    @Override
+    public DtoAlquiler buscarMontoPorNationalId(long nationalId) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nationalId", nationalId);
+        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarMontoPorNationalId, paramSource, new MapeoAlquiler());
     }
 }

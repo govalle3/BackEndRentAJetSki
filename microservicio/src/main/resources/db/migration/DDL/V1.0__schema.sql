@@ -6,7 +6,7 @@ create table alquiler (
  idJetSki varchar not null,
  rentTime int not null,
  dateAndTimeRent datetime not null,
- estado bool not null,
+ estado boolean not null,
  primary key (id)
 );
 

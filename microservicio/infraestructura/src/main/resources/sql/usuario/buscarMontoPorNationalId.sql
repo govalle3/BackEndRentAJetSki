@@ -1,0 +1,1 @@
+select * from alquiler where nationalId = :nationalId and estado = 1 ;

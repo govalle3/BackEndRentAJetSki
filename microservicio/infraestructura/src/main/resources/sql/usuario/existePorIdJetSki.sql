@@ -1,1 +1,1 @@
-select COUNT(1) from alquiler where idJetSki = :idJetSki
+select COUNT(1) from alquiler where idJetSki = :idJetSki and estado = 1

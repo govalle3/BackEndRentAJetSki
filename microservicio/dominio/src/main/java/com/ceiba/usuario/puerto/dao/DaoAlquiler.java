@@ -13,6 +13,18 @@ public interface DaoAlquiler {
     List<DtoAlquiler> listar();
 
     /**
+     * Permite listar usuarios
+     * @return los usuarios
+     */
+    List<DtoAlquiler> listarPorPagar();
+
+    /**
+     * Permite listar usuarios
+     * @return los usuarios
+     */
+    List<DtoAlquiler> listarPagados();
+
+    /**
      * Permite validar si el usuario eligió minimo 10 minutos de alquiler
      * @param nationalId
      * @return si existe un usuario registrado
@@ -32,4 +44,18 @@ public interface DaoAlquiler {
      * @return si existe o no
      */
     boolean existeUsuarioPorNationalId(Long nationalId);
+
+    /**
+     * Permite buscar un alquiler que aun no ha sido pagado
+     * @param nationalId
+     * @return un dto alquiler que aun no ha sido pagado
+     */
+    DtoAlquiler buscarAlquilerNoPagadoAun(Long nationalId);
+
+    /**
+     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
+     * @param nationalId
+     * @return si existe un usuario registrado
+     */
+    DtoAlquiler buscarMontoPorNationalId(long nationalId);
 }

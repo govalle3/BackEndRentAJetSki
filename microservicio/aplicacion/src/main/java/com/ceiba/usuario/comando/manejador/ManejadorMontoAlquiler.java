@@ -4,27 +4,28 @@ import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoAlquiler;
-import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
+import com.ceiba.usuario.servicio.ServicioMontoAlquiler;
 
 import java.time.LocalDateTime;
 
-public class ManejadorPagarAlquiler  {
+public class ManejadorMontoAlquiler {
 
-    private final ServicioPagarAlquiler servicioPagarAlquiler;
+    private final ServicioMontoAlquiler servicioMontoAlquiler;
     private final FabricaAlquiler fabricaAlquiler;
     private final DaoAlquiler daoAlquiler;
 
-    public ManejadorPagarAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, FabricaAlquiler fabricaAlquiler, DaoAlquiler daoAlquiler) {
-        this.servicioPagarAlquiler = servicioPagarAlquiler;
+    public ManejadorMontoAlquiler(ServicioMontoAlquiler servicioMontoAlquiler, FabricaAlquiler fabricaAlquiler, DaoAlquiler daoAlquiler) {
+        this.servicioMontoAlquiler = servicioMontoAlquiler;
         this.fabricaAlquiler = fabricaAlquiler;
         this.daoAlquiler = daoAlquiler;
     }
 
     public double ejecutar(long nationalId, LocalDateTime dateAndTimeCheckout) {
 
-        DtoAlquiler dtoAlquiler = daoAlquiler.buscarPorNationalId(nationalId);
+        DtoAlquiler dtoAlquiler = daoAlquiler.buscarMontoPorNationalId(nationalId);
         Alquiler alquiler = this.fabricaAlquiler.crear(dtoAlquiler);
-        return servicioPagarAlquiler.pagarAlquiler(alquiler, dateAndTimeCheckout);
+        return servicioMontoAlquiler.pagarAlquiler(alquiler, dateAndTimeCheckout);
         
     }
+
 }

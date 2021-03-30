@@ -1,1 +1,1 @@
-select * from alquiler where nationalId = :nationalId
+select * from alquiler where nationalId = :nationalId ;
