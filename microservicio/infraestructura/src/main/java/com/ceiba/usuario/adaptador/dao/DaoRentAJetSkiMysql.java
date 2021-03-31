@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.puerto.dao.DaoAlquiler;
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
+import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 
 @Component
-public class DaoAlquilerMysql implements DaoAlquiler {
+public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
@@ -25,8 +26,8 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     @SqlStatement(namespace="usuario", value="listarPagados")
     private static String sqlListarPagados;
 
-    @SqlStatement(namespace="usuario", value="buscarPorNationalId")
-    private static String sqlBuscarPorNationalId;
+    @SqlStatement(namespace="usuario", value="buscarUsuarioPorNationalId")
+    private static String sqlBuscarUsuarioPorNationalId;
 
     @SqlStatement(namespace="usuario", value="existePorIdJetSki")
     private static String sqlBuscarPorIdJetSki;
@@ -40,7 +41,7 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     @SqlStatement(namespace = "usuario", value = "buscarMontoPorNationalId")
     private static String sqlBuscarMontoPorNationalId;
 
-    public DaoAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public DaoRentAJetSkiMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
@@ -60,10 +61,17 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     }
 
     @Override
-    public DtoAlquiler buscarPorNationalId(Long nationalId) {
+    public DtoAlquiler buscarAlquilerPorNationalId(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nationalId", nationalId);
-        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorNationalId, paramSource, new MapeoAlquiler());
+        paramSource.addValue("cedula", cedula);
+        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarUsuarioPorNationalId, paramSource, new MapeoAlquiler());
+    }
+
+    @Override
+    public DtoUsuario buscarUsuarioPorNationalId(Long cedula) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("cedula", cedula);
+        return (DtoUsuario) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarUsuarioPorNationalId, paramSource, new MapeoUsuario());
     }
 
     @Override
@@ -74,23 +82,23 @@ public class DaoAlquilerMysql implements DaoAlquiler {
     }
 
     @Override
-    public boolean existeUsuarioPorNationalId(Long nationalId) {
+    public boolean existeUsuarioPorNationalId(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nationalId", nationalId);
+        paramSource.addValue("cedula", cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuarioPorNationalId, paramSource, Boolean.class);
     }
 
     @Override
-    public DtoAlquiler buscarAlquilerNoPagadoAun(Long nationalId) {
+    public DtoAlquiler buscarAlquilerNoPagadoAun(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nationalId", nationalId);
+        paramSource.addValue("cedula", cedula);
         return (DtoAlquiler)  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarAlquilerNoPagadoAun, paramSource, new MapeoAlquiler());
     }
 
     @Override
-    public DtoAlquiler buscarMontoPorNationalId(long nationalId) {
+    public DtoAlquiler buscarMontoPorNationalId(long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nationalId", nationalId);
+        paramSource.addValue("cedula", cedula);
         return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarMontoPorNationalId, paramSource, new MapeoAlquiler());
     }
 }

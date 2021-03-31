@@ -1,1 +1,0 @@
-update alquiler set estado=0 where nationalId = :nationalId and estado = 1;

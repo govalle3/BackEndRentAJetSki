@@ -8,53 +8,36 @@ import java.time.Month;
 
 public class AlquilerTestDataBuilder {
 
-    private Long nationalId;
-    private String name;
-    private LocalDate dob;
+    private Long cedula;
     private String idJetSki;
-    private Integer rentTime;
-    private LocalDateTime dateAndTimeRent;
+    private Integer tiempoRenta;
+    private LocalDateTime fechaYHoraRenta;
 
     public AlquilerTestDataBuilder() {
-        nationalId = 1098682980L;
-        name = "German";
-        dob = LocalDate.of(1990, Month.FEBRUARY,26);
+        cedula = 1098682980L;
         idJetSki = "BC001";
-        rentTime = 15;
-        dateAndTimeRent = LocalDateTime.now();
+        tiempoRenta = 15;
+        fechaYHoraRenta = LocalDateTime.now();
     }
 
-    public AlquilerTestDataBuilder conNationalId(Long nationalId) {
-        this.nationalId = nationalId;
-        return this;
-    }
 
-    public AlquilerTestDataBuilder conName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public AlquilerTestDataBuilder conDob(LocalDate dob) {
-        this.dob = dob;
-        return this;
-    }
 
     public AlquilerTestDataBuilder conIdJetSki(String idJetSki) {
         this.idJetSki = idJetSki;
         return this;
     }
 
-    public AlquilerTestDataBuilder conRentTime(Integer rentTime) {
-        this.rentTime = rentTime;
+    public AlquilerTestDataBuilder conTiempoRenta(Integer rentTime) {
+        this.tiempoRenta = rentTime;
         return this;
     }
 
-    public AlquilerTestDataBuilder conDateAndTimeRent(LocalDateTime dateAndTimeRent) {
-        this.dateAndTimeRent = dateAndTimeRent;
+    public AlquilerTestDataBuilder conFechaYHoraRenta(LocalDateTime dateAndTimeRent) {
+        this.fechaYHoraRenta = dateAndTimeRent;
         return this;
     }
 
     public Alquiler build() {
-        return new Alquiler(nationalId,name, dob,idJetSki,rentTime,dateAndTimeRent);
+        return new Alquiler(cedula, idJetSki, tiempoRenta, fechaYHoraRenta);
     }
 }

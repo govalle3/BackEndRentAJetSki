@@ -29,13 +29,13 @@ public class ConsultaControladorAlquiler {
         this.manejadorListarAlquilerPorPagar = manejadorListarAlquilerPorPagar;
     }
 
-    @GetMapping(path = "/listar")
+    @GetMapping(path = "/alquiler")
     @ApiOperation("Listar Alquiler todos")
     public List<DtoAlquiler> listarTodos() {
         return this.manejadorListarAlquiler.ejecutar();
     }
 
-    @GetMapping(path = "/listar-pagados")
+    @GetMapping(path = "/alquiler/pagados")
     @ApiOperation("Listar Alquileres pagados")
     public List<DtoAlquiler> listarPagados() {
         return this.manejadorListarAlquilerPagados.ejecutar();

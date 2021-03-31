@@ -1,9 +1,10 @@
 package com.ceiba.usuario.controlador;
 
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
-import com.ceiba.usuario.comando.manejador.ManejadorLiberarAlquiler;
-import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquiler;
-import com.ceiba.usuario.comando.manejador.ManejadorCrearUsuario;
+import com.ceiba.usuario.comando.dtoComando.ComandoUsuario;
+import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioNuevo;
+import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioRegistrado;
+import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorMontoAlquiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,44 +21,44 @@ import java.time.LocalDateTime;
 @Api(tags = { "Controlador comando alquiler"})
 public class ComandoControladorAlquiler {
 
-    private final ManejadorCrearAlquiler manejadorCrearAlquiler;
+    private final ManejadorCrearAlquilerUsuarioRegistrado manejadorCrearAlquilerUsuarioRegistrado;
     private final ManejadorMontoAlquiler manejadorMontoAlquiler;
-    private final ManejadorCrearUsuario manejadorCrearUsuario;
-    private final ManejadorLiberarAlquiler manejadorLiberarAlquiler;
+    private final ManejadorCrearAlquilerUsuarioNuevo manejadorCrearAlquilerUsuarioNuevo;
+    private final ManejadorPagarAlquiler manejadorPagoAlquiler;
 
     @Autowired
-    public ComandoControladorAlquiler(ManejadorCrearAlquiler manejadorCrearAlquiler, ManejadorMontoAlquiler manejadorMontoAlquiler, ManejadorCrearUsuario manejadorCrearUsuario, ManejadorLiberarAlquiler manejadorLiberarAlquiler) {
-        this.manejadorCrearAlquiler = manejadorCrearAlquiler;
+    public ComandoControladorAlquiler(ManejadorCrearAlquilerUsuarioRegistrado manejadorCrearAlquilerUsuarioRegistrado, ManejadorMontoAlquiler manejadorMontoAlquiler, ManejadorCrearAlquilerUsuarioNuevo manejadorCrearAlquilerUsuarioNuevo, ManejadorPagarAlquiler manejadorPagoAlquiler) {
+        this.manejadorCrearAlquilerUsuarioRegistrado = manejadorCrearAlquilerUsuarioRegistrado;
         this.manejadorMontoAlquiler = manejadorMontoAlquiler;
-        this.manejadorCrearUsuario = manejadorCrearUsuario;
-        this.manejadorLiberarAlquiler = manejadorLiberarAlquiler;
+        this.manejadorCrearAlquilerUsuarioNuevo = manejadorCrearAlquilerUsuarioNuevo;
+        this.manejadorPagoAlquiler = manejadorPagoAlquiler;
     }
 
-    @PostMapping(path = "/gestionar-usuarios/alquilar")
+    @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
-    public void crear(@RequestBody ComandoAlquiler comandoAlquiler ){
-        manejadorCrearUsuario.registrar(comandoAlquiler);
+    public void registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuario comandoUsuario, @RequestBody ComandoAlquiler comandoAlquiler ){
+        manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoAlquiler, comandoUsuario); // manejador n expesa completamne su funcion registrar alguiler usuario nuevo
     }
 
-    @PostMapping(path = "/usuarios-registrados/alquilar")
+    @PostMapping(path = "/usuarios-registrados/alquiler")
     @ApiOperation("Crear Alquiler con usuario registrado")
-    public void registrarAlquilerUsuarioRegistrado(@RequestParam("nationalId") String nationalId, @RequestParam("idJetSki") String idJetSki, @RequestParam("rentTime") Integer rentTime, @RequestParam("dateAndTimeRent") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeRent) {
-        long lonNationalId = Long.parseLong(nationalId);
-        manejadorCrearAlquiler.ejecutar(lonNationalId, idJetSki, rentTime,dateAndTimeRent);
+    public void registrarAlquilerUsuarioRegistrado(@RequestParam("cedula") String cedula, @RequestParam("idJetSki") String idJetSki, @RequestParam("tiempoRenta") Integer tiempoRenta, @RequestParam("fechaYHoraRenta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaYHoraRenta) {
+        long lonCedula = Long.parseLong(cedula);
+        manejadorCrearAlquilerUsuarioRegistrado.ejecutar(lonCedula, idJetSki, tiempoRenta, fechaYHoraRenta);
     }
 
-    @PostMapping(path = "/gestionar-montos/monto")
-    @ApiOperation("Calcular valor renta alquiler")
-    public double montoTotal(@RequestParam("nationalId") String nationalId, @RequestParam("dateAndTimeCheckout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAndTimeCheckout) {
-        long lonNationalId = Long.parseLong(nationalId);
-        return manejadorMontoAlquiler.ejecutar(lonNationalId, dateAndTimeCheckout);
+    @PostMapping(path = "/usuario/monto")
+    @ApiOperation("Calcula monto renta alquiler")
+    public double calcularMontoAlquiler(@RequestParam("cedula") String cedula, @RequestParam("fechaYHoraEntrega") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaYHoraEntrega) {
+        long lonNationalId = Long.parseLong(cedula);
+        return manejadorMontoAlquiler.ejecutar(lonNationalId, fechaYHoraEntrega);
     }
 
-    @PutMapping(path = "/gestionar-pago") //
-    @ApiOperation("Actualiza estado Alquiler")
-    public void actualizarPago(@RequestParam("nationalId") String nationalId) {
-        long lonNationalId = Long.parseLong(nationalId);
-        manejadorLiberarAlquiler.actualizar(lonNationalId);
+    @PutMapping(path = "/usuario/pago") //
+    @ApiOperation("Paga un Alquiler según el monto")
+    public void pagoMontoAlquiler(@RequestParam("cedula") String cedula) {
+        long lonNationalId = Long.parseLong(cedula);
+        manejadorPagoAlquiler.pagar(lonNationalId);
     }
 
 }

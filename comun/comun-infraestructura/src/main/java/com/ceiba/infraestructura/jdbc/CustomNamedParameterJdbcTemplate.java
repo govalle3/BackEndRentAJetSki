@@ -24,7 +24,7 @@ public class CustomNamedParameterJdbcTemplate {
 	public boolean crear(Object object, String sql) {
 		MapSqlParameterSource paramSource = crearParametros(object);
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		this.namedParameterJdbcTemplate.update(sql, paramSource,keyHolder,new String[] { "nationalId" });
+		this.namedParameterJdbcTemplate.update(sql, paramSource,keyHolder,new String[] { "id" });
 		return true;
 	}
 	

@@ -1,10 +1,11 @@
 package com.ceiba.usuario.puerto.dao;
 
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
 import java.util.List;
 
-public interface DaoAlquiler {
+public interface DaoRentAJetSki {
 
     /**
      * Permite listar usuarios
@@ -29,7 +30,14 @@ public interface DaoAlquiler {
      * @param nationalId
      * @return si existe un usuario registrado
      */
-    DtoAlquiler buscarPorNationalId(Long nationalId);
+    DtoUsuario buscarUsuarioPorNationalId(Long nationalId);
+
+    /**
+     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
+     * @param nationalId
+     * @return si existe un usuario registrado
+     */
+    DtoAlquiler buscarAlquilerPorNationalId(Long nationalId);
 
     /**
      * Permite validar si hay una moto alquilada
@@ -58,4 +66,5 @@ public interface DaoAlquiler {
      * @return si existe un usuario registrado
      */
     DtoAlquiler buscarMontoPorNationalId(long nationalId);
+
 }

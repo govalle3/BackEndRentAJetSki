@@ -6,7 +6,7 @@ jasypt:
 server:
    port: 7474
    servlet:
-      context-path: /RentJetSki
+      context-path: /gestion-alquileres
       session:
          timeout: 21600s
 

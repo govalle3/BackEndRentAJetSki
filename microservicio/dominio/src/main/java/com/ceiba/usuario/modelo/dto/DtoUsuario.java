@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-public class DtoAlquiler {
+public class DtoUsuario {
     private Long cedula;
-    private String idJetSki;
-    private Integer tiempoRenta;
-    private LocalDateTime fechaYHoraRenta;
+    private String nombre;
+    private LocalDate fechaNacido;
 }

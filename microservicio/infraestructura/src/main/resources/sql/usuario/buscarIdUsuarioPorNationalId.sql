@@ -1,0 +1,1 @@
+select id from usuarios where cedula = :cedula;

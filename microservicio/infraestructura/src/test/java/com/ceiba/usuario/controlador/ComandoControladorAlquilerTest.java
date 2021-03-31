@@ -37,7 +37,7 @@ public class ComandoControladorAlquilerTest {
         // arrange
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
         // act - assert
-        mocMvc.perform(post("/alquiler/crear")
+        mocMvc.perform(post("/alquiler/registrarAlquilerUsuarioNuevo")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(alquiler)))
                 .andExpect(status().isOk());

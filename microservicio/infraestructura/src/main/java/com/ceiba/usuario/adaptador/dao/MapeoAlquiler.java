@@ -14,13 +14,11 @@ public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
     @Override
     public DtoAlquiler mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
-        Long nationalId = resultSet.getLong("nationalId");
-        String name = resultSet.getString("name");
-        LocalDate dob = extraerLocalDate(resultSet, "dob");
+        Long cedula = resultSet.getLong("cedula");
         String idJetSki = resultSet.getString("idJetSki");
-        Integer rentTime = resultSet.getInt("rentTime");
-        LocalDateTime dateAndTimeRent = extraerLocalDateTime(resultSet, "dateAndTimeRent");
-        return new DtoAlquiler(nationalId,name,dob,idJetSki,rentTime,dateAndTimeRent);
+        Integer tiempoRenta = resultSet.getInt("tiempoRenta");
+        LocalDateTime fechaYHoraRenta = extraerLocalDateTime(resultSet, "fechaYHoraRenta");
+        return new DtoAlquiler(cedula,idJetSki,tiempoRenta,fechaYHoraRenta);
     }
 
 }

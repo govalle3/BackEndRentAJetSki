@@ -1,0 +1,1 @@
+insert into usuarios (cedula, nombre, fechaNacido) values (:cedula, :nombre, :fechaNacido)

@@ -4,61 +4,45 @@ package com.ceiba.usuario.modelo.entidad;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.*;
+import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
 
 public class Alquiler {
-    private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO = "Se debe ingresar el nombre de usuario";
+
     private static final String SE_DEBE_INGRESAR_LA_CEDULA = "Se debe ingresar la cédula";
-    private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO = "Se debe ingresar la fecha de nacimiento";
-    private static final String SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA = "Se debe seleccionar una moto acuatica";
+    private static final String SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA = "Se debe seleccionar una moto acuática";
     private static final String SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER = "Se debe seleccionar el tiempo de alquiler";
+    private static final String NO_SE_PERMITEN_NUMEROS_NEGATIVOS = "No se permiten números negativos";
 
-    private Long nationalId;
-    private String name;
-    private LocalDate dob;
+    private static final String SOLO_SE_PERMITEN_CARACTERES_NUMERICOS = "Solo se permiten caracteres numéricos";
+
+    private Long cedula;
     private String idJetSki;
-    private Integer rentTime;
-    private LocalDateTime dateAndTimeRent;
+    private Integer tiempoRenta;
+    private LocalDateTime fechaYHoraRenta;
 
-    public Alquiler(Long nationalId, String name, LocalDate dob, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) {
+    public Alquiler(Long cedula, String idJetSki, Integer tiempoRenta, LocalDateTime fechaYHoraRenta) {
 
-        validarObligatorio(nationalId, SE_DEBE_INGRESAR_LA_CEDULA);
-        validarObligatorio(name, SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO);
-        validarObligatorio(dob, SE_DEBE_INGRESAR_LA_FECHA_DE_NACIMIENTO);
+        validarObligatorio(cedula, SE_DEBE_INGRESAR_LA_CEDULA);
         validarObligatorio(idJetSki, SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA);
-        validarObligatorio(rentTime, SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER);
+        validarObligatorio(tiempoRenta, SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER);
+        validarPositivo(cedula.doubleValue(), NO_SE_PERMITEN_NUMEROS_NEGATIVOS);
+        validarPositivo(tiempoRenta.doubleValue(), NO_SE_PERMITEN_NUMEROS_NEGATIVOS);
+        validarNumerico(cedula.toString(),SOLO_SE_PERMITEN_CARACTERES_NUMERICOS);
+        validarNumerico(tiempoRenta.toString(),SOLO_SE_PERMITEN_CARACTERES_NUMERICOS);
 
-        this.nationalId = nationalId;
-        this.name = name;
-        this.dob = dob;
+        this.cedula = cedula;
         this.idJetSki = idJetSki;
-        this.rentTime = rentTime;
-        this.dateAndTimeRent = dateAndTimeRent;
+        this.tiempoRenta = tiempoRenta;
+        this.fechaYHoraRenta = fechaYHoraRenta;
     }
 
-    public Long getNationalId() {
-        return nationalId;
+    public Long getCedula() {
+        return cedula;
     }
 
-    public void setNationalId(Long nationalId) {
-        this.nationalId = nationalId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setCedula(Long cedula) {
+        this.cedula = cedula;
     }
 
     public String getIdJetSki() {
@@ -69,19 +53,19 @@ public class Alquiler {
         this.idJetSki = idJetSki;
     }
 
-    public Integer getRentTime() {
-        return rentTime;
+    public Integer getTiempoRenta() {
+        return tiempoRenta;
     }
 
-    public void setRentTime(Integer rentTime) {
-        this.rentTime = rentTime;
+    public void setTiempoRenta(Integer tiempoRenta) {
+        this.tiempoRenta = tiempoRenta;
     }
 
-    public LocalDateTime getDateAndTimeRent() {
-        return dateAndTimeRent;
+    public LocalDateTime getFechaYHoraRenta() {
+        return fechaYHoraRenta;
     }
 
-    public void setDateAndTimeRent(LocalDateTime dateAndTimeRent) {
-        this.dateAndTimeRent = dateAndTimeRent;
+    public void setFechaYHoraRenta(LocalDateTime fechaYHoraRenta) {
+        this.fechaYHoraRenta = fechaYHoraRenta;
     }
 }

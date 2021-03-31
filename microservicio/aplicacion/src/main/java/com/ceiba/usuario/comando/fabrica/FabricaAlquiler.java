@@ -13,34 +13,28 @@ public class FabricaAlquiler {
 
     public Alquiler crear(ComandoAlquiler comandoAlquiler) { // viene del front end
         return new Alquiler(
-                comandoAlquiler.getNationalId(),
-                comandoAlquiler.getName(),
-                comandoAlquiler.getDob(),
+                comandoAlquiler.getCedula(),
                 comandoAlquiler.getIdJetSki(),
-                comandoAlquiler.getRentTime(),
-                comandoAlquiler.getDateAndTimeRent()
+                comandoAlquiler.getTiempoRenta(),
+                comandoAlquiler.getFechaYHoraRenta()
         );
     }
 
     public Alquiler crear(DtoAlquiler dtoAlquiler) { // viene de base de datos
         return new Alquiler(
-                dtoAlquiler.getNationalId(),
-                dtoAlquiler.getName(),
-                dtoAlquiler.getDob(),
+                dtoAlquiler.getCedula(),
                 dtoAlquiler.getIdJetSki(),
-                dtoAlquiler.getRentTime(),
-                dtoAlquiler.getDateAndTimeRent()
+                dtoAlquiler.getTiempoRenta(),
+                dtoAlquiler.getFechaYHoraRenta()
         );
     }
 
-    public Alquiler crearRegistroExistente(DtoAlquiler dtoAlquiler, String idJetSki, Integer rentTime, LocalDateTime dateAndTimeRent) { // viene de base de datos
+    public Alquiler crearRegistroUsuarioExistente(Long cedula, String idJetSki, Integer tiempoRenta, LocalDateTime fechaYHoraRenta) { // viene de base de datos
         return new Alquiler(
-                dtoAlquiler.getNationalId(),
-                dtoAlquiler.getName(),
-                dtoAlquiler.getDob(),
+                cedula,
                 idJetSki,
-                rentTime,
-                dateAndTimeRent
+                tiempoRenta,
+                fechaYHoraRenta
         );
     }
 

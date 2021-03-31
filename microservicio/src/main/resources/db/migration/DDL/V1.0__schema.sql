@@ -1,13 +1,19 @@
 create table alquiler (
  id int(11) not null auto_increment,
- nationalId int not null,
- name varchar(45) not null,
- dob date not null,
+ cedula int(20) not null,
  idJetSki varchar not null,
- rentTime int not null,
- dateAndTimeRent datetime not null,
+ tiempoRenta int not null,
+ fechaYHoraRenta datetime not null,
  estado boolean not null,
- primary key (id)
+ primary key (id),
+);
+
+create table usuarios (
+id int(11) not null auto_increment,
+cedula int not null,
+nombre varchar(40) not null,
+fechaNacido date not null,
+primary key (id)
 );
 
 create table JetSki (

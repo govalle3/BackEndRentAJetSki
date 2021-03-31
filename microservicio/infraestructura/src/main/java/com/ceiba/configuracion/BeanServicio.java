@@ -1,11 +1,11 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.dao.DaoAlquiler;
-import com.ceiba.usuario.puerto.repositorio.RepositorioAlquiler;
-import com.ceiba.usuario.servicio.ServicioLiberarAlquiler;
+import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
+import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
+import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioMontoAlquiler;
+import com.ceiba.usuario.servicio.ServicioCalcularMontoAlquiler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,25 +13,22 @@ import org.springframework.context.annotation.Configuration;
 public class BeanServicio {
 
     @Bean
-    public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioAlquiler repositorioAlquiler, DaoAlquiler daoAlquiler) {
-        return new ServicioCrearAlquiler(repositorioAlquiler, daoAlquiler);
+    public ServicioCrearAlquiler servicioCrearAlquiler(RepositorioRentAJetSki repositorioRentAJetSki, DaoRentAJetSki daoRentAJetSki) {
+        return new ServicioCrearAlquiler(repositorioRentAJetSki, daoRentAJetSki);
     }
 
     @Bean
-    public ServicioMontoAlquiler servicioPagarAlquiler() {
-        return new ServicioMontoAlquiler();
+    public ServicioCalcularMontoAlquiler servicioPagarAlquiler() {
+        return new ServicioCalcularMontoAlquiler();
     }
 
     @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(ServicioCrearAlquiler servicioCrearAlquiler, DaoAlquiler daoAlquiler) {
-        return new ServicioCrearUsuario(servicioCrearAlquiler, daoAlquiler);
+    public ServicioCrearUsuario servicioCrearUsuario(RepositorioRentAJetSki repositorioRentAJetSki, DaoRentAJetSki daoRentAJetSki) {
+        return new ServicioCrearUsuario(repositorioRentAJetSki, daoRentAJetSki);
     }
 
     @Bean
-    public ServicioLiberarAlquiler servicioCheckoutAlquiler(RepositorioAlquiler repositorioAlquiler) {
-        return new ServicioLiberarAlquiler(repositorioAlquiler);
+    public ServicioPagarAlquiler servicioCheckoutAlquiler(RepositorioRentAJetSki repositorioRentAJetSki) {
+        return new ServicioPagarAlquiler(repositorioRentAJetSki);
     }
-
-	
-
 }

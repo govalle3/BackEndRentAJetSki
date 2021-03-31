@@ -1,1 +1,0 @@
-select * from alquiler where nationalId = :nationalId ;

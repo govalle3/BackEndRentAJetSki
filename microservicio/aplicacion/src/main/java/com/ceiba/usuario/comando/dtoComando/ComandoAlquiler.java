@@ -16,11 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 public class ComandoAlquiler {
 
-    private Long nationalId;
-    private String name;
-    private LocalDate dob;
+    private Long cedula;
     private String idJetSki;
-    private Integer rentTime;
-
-    private LocalDateTime dateAndTimeRent;
+    private Integer tiempoRenta;
+    private LocalDateTime fechaYHoraRenta;
 }
