@@ -23,7 +23,6 @@ public class ServicioCalcularMontoAlquiler {
     }
 
     public double calcularValorMinutoRenta(Alquiler alquiler) {
-
         String idJetSki = alquiler.getIdJetSki();
         if ("BC001".equals(idJetSki)) {
             valorMinutoRenta = PRECIO_MOTO_1_5000;
@@ -37,31 +36,21 @@ public class ServicioCalcularMontoAlquiler {
         return valorMinutoRenta;
     }
 
-    public double calcularSiHayMultaYMontoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime dateAndTimeCheckout) { // separar methods en 2
-
+    public double calcularSiHayMultaYMontoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime horaYFechaEntrega) { // separar methods en 2
         Integer tiempoRentado = alquiler.getTiempoRenta();
         LocalTime fechaYHoraRentaUsuario = alquiler.getFechaYHoraRenta().toLocalTime();
-        LocalTime localTime = dateAndTimeCheckout.toLocalTime();
+        LocalTime localTime = horaYFechaEntrega.toLocalTime();
         Long duracion = Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes();
-
         if (duracion > tiempoRentado) {
             long minutosPasados = duracion - tiempoRentado;
             totalMultaRenta = minutosPasados * MULTA_MINUTO_1_2 * valorMinuto;
-
         }
-
         return totalMultaRenta;
-
     }
 
     public double sumaMontoParcialYMontoTotal(Alquiler alquiler, double valorMinuto, double totalMulta) {
-
         Integer tiempoRentado = alquiler.getTiempoRenta();
         double totalParcial = valorMinuto * tiempoRentado;
         return totalParcial + totalMulta;
-
     }
-
-
-
 }

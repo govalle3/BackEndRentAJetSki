@@ -48,10 +48,10 @@ public interface DaoRentAJetSki {
 
     /**
      * Permite validar si existe un usuario con un nombre
-     * @param nationalId
+     * @param cedula
      * @return si existe o no
      */
-    boolean existeUsuarioPorNationalId(Long nationalId);
+    boolean existeUsuarioPorCedula(Long cedula);
 
     /**
      * Permite buscar un alquiler que aun no ha sido pagado
@@ -67,4 +67,10 @@ public interface DaoRentAJetSki {
      */
     DtoAlquiler buscarMontoPorNationalId(long nationalId);
 
+    /**
+     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
+     * @param cedula
+     * @return si existe un usuario registrado
+     */
+    boolean estaAlDiaElUsuario(Long cedula);
 }

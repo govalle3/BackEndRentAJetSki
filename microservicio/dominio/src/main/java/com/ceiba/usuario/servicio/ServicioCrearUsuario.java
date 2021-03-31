@@ -16,6 +16,7 @@ public class ServicioCrearUsuario {
     public static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
     public static final String LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO = "Los dias miercoles no se presta servicio";
     public static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
+    public static final Integer EDAD_PERMITIDA_18 = 18;
     private final RepositorioRentAJetSki repositorioRentAJetSki;
     private final DaoRentAJetSki daoRentAJetSki;
 
@@ -27,7 +28,7 @@ public class ServicioCrearUsuario {
     public void crearUsuario(Usuario usuario){
         validarSiElLugarSeEncuentraAbierto();
         validarSiEsMayorDeEdad(usuario.getFechaNacido());
-        validarSiExisteUsuario(usuario); // arreglar nombre
+        validarSiExisteUsuario(usuario);
         crear(usuario);
     }
 
@@ -36,23 +37,22 @@ public class ServicioCrearUsuario {
     }
 
     private void validarSiElLugarSeEncuentraAbierto() {
-        DayOfWeek dayOfWeek = LocalDateTime.now().getDayOfWeek();
-        boolean result = dayOfWeek.name().equals(DayOfWeek.WEDNESDAY.name());
-        if(result){
+        DayOfWeek diaActual = LocalDateTime.now().getDayOfWeek();
+        boolean esMiercoles = diaActual.name().equals(DayOfWeek.WEDNESDAY.name());
+        if(esMiercoles){
             throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
         }
     }
 
     private void validarSiEsMayorDeEdad(LocalDate edad) {
-        int edadPermitida = 18;
-        boolean result = Period.between(edad, LocalDate.now()).getYears() < edadPermitida;
-        if(result){
+        boolean esMenorDeEdad = Period.between(edad, LocalDate.now()).getYears() < EDAD_PERMITIDA_18;
+        if(esMenorDeEdad){
             throw new ExcepcionDuplicidad(SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD);
         }
     }
 
     private void validarSiExisteUsuario(Usuario usuario) {
-        if(this.daoRentAJetSki.existeUsuarioPorNationalId(usuario.getCedula())) {
+        if(this.daoRentAJetSki.existeUsuarioPorCedula(usuario.getCedula())) {
             throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
     }

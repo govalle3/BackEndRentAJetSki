@@ -2,6 +2,7 @@ package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.dtoComando.ComandoUsuario;
+import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
@@ -23,9 +24,9 @@ public class ManejadorCrearAlquilerUsuarioNuevo {
         this.fabricaUsuario = fabricaUsuario;
     }
 
-    public void ejecutar(ComandoAlquiler comandoAlquiler, ComandoUsuario comandoUsuario) { // Estos datos vienen del frontEnd
-        Alquiler alquiler = this.fabricaAlquiler.crear(comandoAlquiler);
-        Usuario usuario = this.fabricaUsuario.crear(comandoUsuario);
+    public void ejecutar(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // Estos datos vienen del frontEnd
+        Alquiler alquiler = this.fabricaAlquiler.crearAlquilerUsuarioRegistrado(comandoUsuarioAlquiler);
+        Usuario usuario = this.fabricaUsuario.crearUsuario(comandoUsuarioAlquiler);
         this.servicioCrearUsuario.crearUsuario(usuario);
         this.servicioCrearAlquiler.crearAlquiler(alquiler);
     }

@@ -23,13 +23,13 @@ public class ServicioCrearUsuarioTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().build();
         RepositorioRentAJetSki repositorioRentAJetSki = mock(RepositorioRentAJetSki.class);
         DaoRentAJetSki daoRentAJetSki = mock(DaoRentAJetSki.class);
-        when(daoRentAJetSki.existeUsuarioPorNationalId(usuario.getCedula())).thenReturn(false);
+        when(daoRentAJetSki.existeUsuarioPorCedula(usuario.getCedula())).thenReturn(false);
         ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(repositorioRentAJetSki, daoRentAJetSki);
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioRentAJetSki, daoRentAJetSki);
         //Act
         servicioCrearUsuario.crearUsuario(usuario);
         //Assert
-        verify(daoRentAJetSki, times(1)).existeUsuarioPorNationalId(usuario.getCedula());
+        verify(daoRentAJetSki, times(1)).existeUsuarioPorCedula(usuario.getCedula());
         verify(repositorioRentAJetSki,times(1)).crearAlquiler(alquiler);
 
     }

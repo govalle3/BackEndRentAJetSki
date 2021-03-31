@@ -41,7 +41,7 @@ public class ConsultaControladorAlquiler {
         return this.manejadorListarAlquilerPagados.ejecutar();
     }
 
-    @GetMapping(path = "/listar-por-pagar")
+    @GetMapping(path = "/alquiler/por-pago")
     @ApiOperation("Listar Alquileres por pagar")
     public List<DtoAlquiler> listarPorPagar() {
         return this.manejadorListarAlquilerPorPagar.ejecutar();

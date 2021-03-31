@@ -41,6 +41,9 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
     @SqlStatement(namespace = "usuario", value = "buscarMontoPorNationalId")
     private static String sqlBuscarMontoPorNationalId;
 
+    @SqlStatement(namespace = "usuario", value = "estaAlDiaElUsuario")
+    private static String sqlEstaAlDiaElUsuario;
+
     public DaoRentAJetSkiMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -82,7 +85,7 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
     }
 
     @Override
-    public boolean existeUsuarioPorNationalId(Long cedula) {
+    public boolean existeUsuarioPorCedula(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("cedula", cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuarioPorNationalId, paramSource, Boolean.class);
@@ -100,5 +103,12 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("cedula", cedula);
         return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarMontoPorNationalId, paramSource, new MapeoAlquiler());
+    }
+
+    @Override
+    public boolean estaAlDiaElUsuario(Long cedula) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("cedula", cedula);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEstaAlDiaElUsuario, paramSource, Boolean.class);
     }
 }

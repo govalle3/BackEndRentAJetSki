@@ -2,6 +2,7 @@ package com.ceiba.usuario.controlador;
 
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.dtoComando.ComandoUsuario;
+import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioNuevo;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioRegistrado;
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
@@ -36,8 +37,8 @@ public class ComandoControladorAlquiler {
 
     @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
-    public void registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuario comandoUsuario, @RequestBody ComandoAlquiler comandoAlquiler ){
-        manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoAlquiler, comandoUsuario); // manejador n expesa completamne su funcion registrar alguiler usuario nuevo
+    public void registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
+        manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler); // manejador n expesa completamne su funcion registrar alguiler usuario nuevo
     }
 
     @PostMapping(path = "/usuarios-registrados/alquiler")

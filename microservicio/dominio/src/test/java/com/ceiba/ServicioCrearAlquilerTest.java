@@ -27,12 +27,12 @@ public class ServicioCrearAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().build();
         RepositorioRentAJetSki repositorioRentAJetSki = mock(RepositorioRentAJetSki.class);
         DaoRentAJetSki daoRentAJetSki = mock(DaoRentAJetSki.class);
-        when(daoRentAJetSki.existeUsuarioPorNationalId(alquiler.getCedula())).thenReturn(false);
+        when(daoRentAJetSki.existeUsuarioPorCedula(alquiler.getCedula())).thenReturn(false);
         ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(repositorioRentAJetSki, daoRentAJetSki);
         // Act
         servicioCrearAlquiler.crearAlquiler(alquiler);
         // Assert
-        verify(daoRentAJetSki, times(1)).existeUsuarioPorNationalId(alquiler.getCedula());
+        verify(daoRentAJetSki, times(1)).existeUsuarioPorCedula(alquiler.getCedula());
         verify(repositorioRentAJetSki, times(1)).crearAlquiler(alquiler);
     }
 
@@ -84,7 +84,7 @@ public class ServicioCrearAlquilerTest {
         Alquiler alquiler = new AlquilerTestDataBuilder().build();
         RepositorioRentAJetSki repositorioRentAJetSki = mock(RepositorioRentAJetSki.class);
         DaoRentAJetSki daoRentAJetSki = mock(DaoRentAJetSki.class);
-        when(daoRentAJetSki.existeUsuarioPorNationalId(alquiler.getCedula())).thenReturn(true);
+        when(daoRentAJetSki.existeUsuarioPorCedula(alquiler.getCedula())).thenReturn(true);
         ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(repositorioRentAJetSki, daoRentAJetSki);
         // Act - Assert
         BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionDuplicidad.class,
