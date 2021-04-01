@@ -16,6 +16,8 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
+    private static final String CEDULA = "cedula";
+
     @SqlStatement(namespace="usuario", value="listar")
     private static String sqlListar;
 
@@ -72,28 +74,28 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
     @Override
     public boolean existeUsuarioPorCedula(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
+        paramSource.addValue(CEDULA, cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuarioPorNationalId, paramSource, Boolean.class);
     }
 
     @Override
     public DtoAlquiler buscarAlquilerNoPagadoAun(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
+        paramSource.addValue(CEDULA, cedula);
         return (DtoAlquiler)  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarAlquilerNoPagadoAun, paramSource, new MapeoAlquiler());
     }
 
     @Override
     public DtoAlquiler buscarMontoPorNationalId(long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
+        paramSource.addValue(CEDULA, cedula);
         return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarMontoPorNationalId, paramSource, new MapeoAlquiler());
     }
 
     @Override
     public boolean estaAlDiaElUsuario(Long cedula) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
+        paramSource.addValue(CEDULA, cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEstaAlDiaElUsuario, paramSource, Boolean.class);
     }
 }
