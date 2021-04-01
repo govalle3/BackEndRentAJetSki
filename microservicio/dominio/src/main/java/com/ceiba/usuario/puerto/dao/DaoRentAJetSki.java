@@ -1,7 +1,6 @@
 package com.ceiba.usuario.puerto.dao;
 
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
 import java.util.List;
 
