@@ -15,9 +15,9 @@ public class ManejadorMontoAlquiler {
     private final DaoRentAJetSki daoRentAJetSki;
 
     public ManejadorMontoAlquiler(ServicioCalcularMontoAlquiler servicioCalcularMontoAlquiler, FabricaAlquiler fabricaAlquiler, DaoRentAJetSki daoRentAJetSki) {
-        this.servicioCalcularMontoAlquiler = servicioCalcularMontoAlquiler;
-        this.fabricaAlquiler = fabricaAlquiler;
         this.daoRentAJetSki = daoRentAJetSki;
+        this.fabricaAlquiler = fabricaAlquiler;
+        this.servicioCalcularMontoAlquiler = servicioCalcularMontoAlquiler;
     }
 
     public double ejecutar(long cedula, LocalDateTime horaYFechaEntrega) {

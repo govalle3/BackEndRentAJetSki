@@ -1,8 +1,11 @@
 package com.ceiba.usuario.controlador;
 
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
@@ -20,6 +23,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
@@ -37,7 +43,7 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void crearAlquilerUsuarioNuevo() throws Exception{
         // arrange
-        ComandoUsuarioAlquiler comandoUsuarioAlquiler = new ComandoUsuarioAlquilerTestDataBuilder().build();
+        ComandoUsuarioAlquiler comandoUsuarioAlquiler = new ComandoUsuarioAlquilerTestDataBuilder().conCedula(123456L).build();
         // act - assert
         mocMvc.perform(post("/gestionar-alquiler/usuarios/alquiler")
                 .contentType(APPLICATION_JSON_UTF8)
@@ -52,7 +58,7 @@ public class ComandoControladorAlquilerTest {
         ComandoAlquiler comandoAlquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler?cedula=51658659&idJetSki=BC001&tiempoRenta=11&fechaYHoraRenta=2021-03-29T21:00:00")
+        mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler?cedula=51658&idJetSki=BC002&tiempoRenta=15&fechaYHoraRenta=2021-04-01T11:10:00")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(comandoAlquiler)))
                 .andExpect(status().isOk());
@@ -62,9 +68,8 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void calcularMontoAlquiler() throws Exception{
         // Arrange
-        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
         // act - assert
-        mocMvc.perform(post("/gestionar-alquiler/usuario/monto?cedula=1098682980&fechaYHoraEntrega=2021-03-31T09:30:00")
+        mocMvc.perform(post("/gestionar-alquiler/usuario/monto?cedula=1234&fechaYHoraEntrega=2021-03-31T09:30:00")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().string("50000.0")); // calculo monto;

@@ -7,10 +7,7 @@ import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioRegistra
 import com.ceiba.usuario.comando.manejador.ManejadorPagarAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorMontoAlquiler;
 
-import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
-import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
-import com.ceiba.usuario.servicio.ServicioCalcularMontoAlquiler;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
+import com.ceiba.usuario.servicio.*;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +18,8 @@ public class BeanManejador {
 
     // instancia los datos
     @Bean
-    public ManejadorCrearAlquilerUsuarioRegistrado manejadorCrearAlquiler(FabricaAlquiler fabricaAlquiler, FabricaUsuario fabricaUsuario, ServicioCrearAlquiler servicioCrearAlquiler, DaoRentAJetSki daoRentAJetSki) {
-        return new ManejadorCrearAlquilerUsuarioRegistrado(fabricaAlquiler, servicioCrearAlquiler, daoRentAJetSki);
+    public ManejadorCrearAlquilerUsuarioRegistrado manejadorCrearAlquilerUsuarioRegistrado(FabricaAlquiler fabricaAlquiler, ServicioCrearAlquiler servicioCrearAlquiler, ServicioValidarExistenciaUsuarioYPagosAlDia servicioValidarExistenciaUsuarioYPagosAlDia) {
+        return new ManejadorCrearAlquilerUsuarioRegistrado(fabricaAlquiler, servicioCrearAlquiler, servicioValidarExistenciaUsuarioYPagosAlDia);
     }
 
     @Bean
@@ -34,7 +31,6 @@ public class BeanManejador {
     public ManejadorCrearAlquilerUsuarioNuevo manejadorCrearAlquilerNuevoUsuario(FabricaAlquiler fabricaAlquiler, ServicioCrearUsuario servicioCrearUsuario, ServicioCrearAlquiler servicioCrearAlquiler, FabricaUsuario fabricaUsuario) {
         return new ManejadorCrearAlquilerUsuarioNuevo(fabricaAlquiler, servicioCrearUsuario, servicioCrearAlquiler, fabricaUsuario);
     }
-
 
     @Bean
     public ManejadorPagarAlquiler manejadorCheckoutAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, FabricaAlquiler fabricaAlquiler, DaoRentAJetSki daoRentAJetSki){

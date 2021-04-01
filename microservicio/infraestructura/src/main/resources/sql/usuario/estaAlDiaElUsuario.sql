@@ -1,1 +1,1 @@
-select COUNT(1) from alquiler where cedula = :cedula and estado = 1;
+select COUNT(1) from alquiler where cedula = :cedula and estado = 0;

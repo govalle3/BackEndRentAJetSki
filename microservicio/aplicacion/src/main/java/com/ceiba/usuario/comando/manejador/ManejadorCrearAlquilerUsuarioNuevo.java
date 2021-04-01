@@ -17,9 +17,10 @@ public class ManejadorCrearAlquilerUsuarioNuevo {
 
     public ManejadorCrearAlquilerUsuarioNuevo(FabricaAlquiler fabricaAlquiler, ServicioCrearUsuario servicioCrearUsuario, ServicioCrearAlquiler servicioCrearAlquiler, FabricaUsuario fabricaUsuario) {
         this.fabricaAlquiler = fabricaAlquiler;
+        this.fabricaUsuario = fabricaUsuario;
         this.servicioCrearUsuario = servicioCrearUsuario;
         this.servicioCrearAlquiler = servicioCrearAlquiler;
-        this.fabricaUsuario = fabricaUsuario;
+
     }
 
     public void ejecutar(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // Estos datos vienen del frontEnd

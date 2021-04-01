@@ -18,8 +18,8 @@ public class ComandoAlquilerTestDataBuilder {
 
     public ComandoAlquilerTestDataBuilder() {
         nationalId = 1234L;
-        idJetSki = "BC002";
-        rentTime = 15;
+        idJetSki = "BC001";
+        rentTime = 10;
         dateAndTimeRent = LocalDateTime.now();
     }
 

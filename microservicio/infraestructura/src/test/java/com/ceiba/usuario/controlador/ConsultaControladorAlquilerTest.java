@@ -32,8 +32,7 @@ public class ConsultaControladorAlquilerTest {
         mocMvc.perform(get("/gestionar-alquiler/alquiler")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
-                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))));
     }
 
     @Test
@@ -45,7 +44,7 @@ public class ConsultaControladorAlquilerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
-                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
+                .andExpect(jsonPath("$[0].cedula", is(51658)));
     }
 
     @Test
@@ -57,7 +56,7 @@ public class ConsultaControladorAlquilerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
-                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
+                .andExpect(jsonPath("$[0].cedula", is(1234)));
     }
 }
 

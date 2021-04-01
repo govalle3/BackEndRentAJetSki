@@ -13,9 +13,10 @@ public class ManejadorPagarAlquiler {
     private final DaoRentAJetSki daoRentAJetSki;
 
     public ManejadorPagarAlquiler(ServicioPagarAlquiler servicioPagarAlquiler, FabricaAlquiler fabricaAlquiler, DaoRentAJetSki daoRentAJetSki) {
+
+        this.daoRentAJetSki = daoRentAJetSki;
         this.servicioPagarAlquiler = servicioPagarAlquiler;
         this.fabricaAlquiler = fabricaAlquiler;
-        this.daoRentAJetSki = daoRentAJetSki;
     }
 
     public void pagar(Long nationalId) {
