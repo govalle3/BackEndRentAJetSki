@@ -26,20 +26,6 @@ public interface DaoRentAJetSki {
     List<DtoAlquiler> listarPagados();
 
     /**
-     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
-     * @param nationalId
-     * @return si existe un usuario registrado
-     */
-    DtoUsuario buscarUsuarioPorNationalId(Long nationalId);
-
-    /**
-     * Permite validar si el usuario eligió minimo 10 minutos de alquiler
-     * @param nationalId
-     * @return si existe un usuario registrado
-     */
-    DtoAlquiler buscarAlquilerPorNationalId(Long nationalId);
-
-    /**
      * Permite validar si hay una moto alquilada
      * @param idJetSki
      * @return si existe una moto o no alquilada

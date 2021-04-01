@@ -25,15 +25,39 @@ public class ConsultaControladorAlquilerTest {
     private MockMvc mocMvc;
 
     @Test
-    public void listar() throws Exception {
+    public void listarTodosLosAlquileres() throws Exception {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/alquiler/listar")
+        mocMvc.perform(get("/gestionar-alquiler/alquiler")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
-                .andExpect(jsonPath("$[0].name", is("Carlos")));
+                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
+    }
+
+    @Test
+    public void listarAlquileresPagados() throws Exception {
+        // arrange
+
+        // act - assert
+        mocMvc.perform(get("/gestionar-alquiler/alquiler/pagados")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
+                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
+    }
+
+    @Test
+    public void listarAlquileresPorPago() throws Exception {
+        // arrange
+
+        // act - assert
+        mocMvc.perform(get("/gestionar-alquiler/alquiler/por-pago")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))))
+                .andExpect(jsonPath("$[0].cedula", is(1098682980)));
     }
 }
 

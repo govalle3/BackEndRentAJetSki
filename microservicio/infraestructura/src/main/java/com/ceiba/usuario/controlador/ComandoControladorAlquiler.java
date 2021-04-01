@@ -1,7 +1,5 @@
 package com.ceiba.usuario.controlador;
 
-import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
-import com.ceiba.usuario.comando.dtoComando.ComandoUsuario;
 import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioNuevo;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioRegistrado;
@@ -16,7 +14,6 @@ import io.swagger.annotations.ApiOperation;
 
 import java.time.LocalDateTime;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/gestionar-alquiler")
 @Api(tags = { "Controlador comando alquiler"})
@@ -38,7 +35,7 @@ public class ComandoControladorAlquiler {
     @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
     public void registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
-        manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler); // manejador n expesa completamne su funcion registrar alguiler usuario nuevo
+            manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler);
     }
 
     @PostMapping(path = "/usuarios-registrados/alquiler")

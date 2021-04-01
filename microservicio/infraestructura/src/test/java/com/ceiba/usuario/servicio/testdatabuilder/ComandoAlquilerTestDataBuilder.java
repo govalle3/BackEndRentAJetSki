@@ -18,11 +18,6 @@ public class ComandoAlquilerTestDataBuilder {
 
     public ComandoAlquilerTestDataBuilder() {
         nationalId = 1234L;
-        name = "German";
-        LocalDate localDate = LocalDate.of(1990, Month.FEBRUARY, 25);//For reference
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedString = localDate.format(formatter);
-        dob = LocalDate.parse(formattedString);
         idJetSki = "BC002";
         rentTime = 15;
         dateAndTimeRent = LocalDateTime.now();
@@ -30,16 +25,6 @@ public class ComandoAlquilerTestDataBuilder {
 
     public ComandoAlquilerTestDataBuilder conNationalId(Long nationalId) {
         this.nationalId = nationalId;
-        return this;
-    }
-
-    public ComandoAlquilerTestDataBuilder conName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public ComandoAlquilerTestDataBuilder conDob(LocalDate dob) {
-        this.dob = dob;
         return this;
     }
 
@@ -59,6 +44,6 @@ public class ComandoAlquilerTestDataBuilder {
     }
 
     public ComandoAlquiler build() {
-        return new ComandoAlquiler(nationalId,name,dob,idJetSki,rentTime,dateAndTimeRent);
+        return new ComandoAlquiler(nationalId,idJetSki,rentTime,dateAndTimeRent);
     }
 }

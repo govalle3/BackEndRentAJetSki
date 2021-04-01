@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class ServicioCalcularMontoAlquilerTest {
 
     @Test
-    public void pagarAlquilerJetSkiPrecio1SinMulta20Minutos() {
+    public void montoAlquilerJetSkiPrecio1SinMulta20Minutos() {
         // Arrange
         LocalDateTime checkout = LocalDateTime.of(2021,
                 Month.MARCH, 18, 13, 50, 0);
@@ -28,7 +28,7 @@ public class ServicioCalcularMontoAlquilerTest {
     }
 
     @Test
-    public void pagarAlquilerJetSkiPrecio2SinMulta20Minutos() {
+    public void montoAlquilerJetSkiPrecio2SinMulta20Minutos() {
         // Arrange
         LocalDateTime checkout = LocalDateTime.of(2021,
                 Month.MARCH, 18, 13, 50, 0);
@@ -43,7 +43,7 @@ public class ServicioCalcularMontoAlquilerTest {
     }
 
     @Test
-    public void pagarAlquilerJetSkiPrecio3SinMulta20Minutos() {
+    public void montoAlquilerJetSkiPrecio3SinMulta20Minutos() {
         // Arrange
         LocalDateTime checkout = LocalDateTime.of(2021,
                 Month.MARCH, 18, 13, 50, 0);
@@ -58,7 +58,7 @@ public class ServicioCalcularMontoAlquilerTest {
     }
 
     @Test
-    public void pagarAlquilerJetSkiPrecio1ConMulta20MinutosMas3MinutosDeMulta() {
+    public void montoAlquilerJetSkiPrecio1ConMulta20MinutosMas3MinutosDeMulta() {
         // Arrange
         LocalDateTime checkout = LocalDateTime.of(2021,
                 Month.MARCH, 18, 13, 53, 0);

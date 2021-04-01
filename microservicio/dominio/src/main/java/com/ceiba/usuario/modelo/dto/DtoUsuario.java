@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class DtoUsuario {
-    private Long cedula;
-    private String nombre;
-    private LocalDate fechaNacido;
+    private final Long cedula;
+    private final String nombre;
+    private final LocalDate fechaNacido;
 }

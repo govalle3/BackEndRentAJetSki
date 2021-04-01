@@ -36,10 +36,10 @@ public class ServicioCalcularMontoAlquiler {
         return valorMinutoRenta;
     }
 
-    public double calcularSiHayMultaYMontoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime horaYFechaEntrega) { // separar methods en 2
+    public double calcularSiHayMultaYMontoParcial(Alquiler alquiler, double valorMinuto, LocalDateTime fechaYHoraEntrega) { // separar methods en 2
         Integer tiempoRentado = alquiler.getTiempoRenta();
         LocalTime fechaYHoraRentaUsuario = alquiler.getFechaYHoraRenta().toLocalTime();
-        LocalTime localTime = horaYFechaEntrega.toLocalTime();
+        LocalTime localTime = fechaYHoraEntrega.toLocalTime();
         Long duracion = Duration.between(fechaYHoraRentaUsuario, localTime).toMinutes();
         if (duracion > tiempoRentado) {
             long minutosPasados = duracion - tiempoRentado;

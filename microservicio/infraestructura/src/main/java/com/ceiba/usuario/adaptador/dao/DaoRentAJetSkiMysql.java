@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -61,20 +60,6 @@ public class DaoRentAJetSkiMysql implements DaoRentAJetSki {
     @Override
     public List<DtoAlquiler> listarPagados() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarPagados, new MapeoAlquiler());
-    }
-
-    @Override
-    public DtoAlquiler buscarAlquilerPorNationalId(Long cedula) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
-        return (DtoAlquiler) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarUsuarioPorNationalId, paramSource, new MapeoAlquiler());
-    }
-
-    @Override
-    public DtoUsuario buscarUsuarioPorNationalId(Long cedula) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cedula", cedula);
-        return (DtoUsuario) this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarUsuarioPorNationalId, paramSource, new MapeoUsuario());
     }
 
     @Override

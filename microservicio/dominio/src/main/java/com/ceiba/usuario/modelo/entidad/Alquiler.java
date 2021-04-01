@@ -1,11 +1,9 @@
 package com.ceiba.usuario.modelo.entidad;
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
-import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
 
 public class Alquiler {
 
@@ -65,7 +63,4 @@ public class Alquiler {
         return fechaYHoraRenta;
     }
 
-    public void setFechaYHoraRenta(LocalDateTime fechaYHoraRenta) {
-        this.fechaYHoraRenta = fechaYHoraRenta;
-    }
 }

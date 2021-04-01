@@ -36,14 +36,6 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public LocalDate getFechaNacido() {
         return fechaNacido;
     }
@@ -51,4 +43,5 @@ public class Usuario {
     public void setFechaNacido(LocalDate fechaNacido) {
         this.fechaNacido = fechaNacido;
     }
+
 }

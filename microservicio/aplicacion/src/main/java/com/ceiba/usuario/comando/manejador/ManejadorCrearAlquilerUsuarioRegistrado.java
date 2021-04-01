@@ -21,10 +21,11 @@ public class ManejadorCrearAlquilerUsuarioRegistrado {
     public void ejecutar(Long cedula, String idJetSki, Integer tiempoRentado, LocalDateTime horaYFechaRenta) { // Estos datos vienen del frontEnd
         Alquiler alquiler = this.fabricaAlquiler.crearRegistroUsuarioExistente(cedula,idJetSki,tiempoRentado,horaYFechaRenta);
         if(daoRentAJetSki.existeUsuarioPorCedula(cedula)){
-            if(daoRentAJetSki.estaAlDiaElUsuario(cedula)){
+            if(!daoRentAJetSki.estaAlDiaElUsuario(cedula)){
                 this.servicioCrearAlquiler.crearAlquiler(alquiler);
             }
             // EL usuario debe aun alquileres
+
         }
         // Arrojar una excepción ?
 

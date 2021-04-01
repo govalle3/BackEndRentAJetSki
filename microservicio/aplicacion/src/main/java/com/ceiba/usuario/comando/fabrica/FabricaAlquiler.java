@@ -5,21 +5,10 @@ import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import org.springframework.stereotype.Component;
 
-import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
-
 import java.time.LocalDateTime;
 
 @Component
 public class FabricaAlquiler {
-
-    public Alquiler crear(ComandoAlquiler comandoAlquiler) { // viene del front end
-        return new Alquiler(
-                comandoAlquiler.getCedula(),
-                comandoAlquiler.getIdJetSki(),
-                comandoAlquiler.getTiempoRenta(),
-                comandoAlquiler.getFechaYHoraRenta()
-        );
-    }
 
     public Alquiler crearAlquilerUsuarioRegistrado(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // viene del front end
         return new Alquiler(

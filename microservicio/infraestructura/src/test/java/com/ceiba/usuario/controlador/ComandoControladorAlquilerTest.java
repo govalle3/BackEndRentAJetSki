@@ -6,7 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
+import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.servicio.testdatabuilder.ComandoAlquilerTestDataBuilder;
+import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioAlquilerTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,27 +35,40 @@ public class ComandoControladorAlquilerTest {
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Test
-    public void crear() throws Exception{
+    public void crearAlquilerUsuarioNuevo() throws Exception{
         // arrange
-        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+        ComandoUsuarioAlquiler comandoUsuarioAlquiler = new ComandoUsuarioAlquilerTestDataBuilder().build();
         // act - assert
-        mocMvc.perform(post("/alquiler/registrarAlquilerUsuarioNuevo")
+        mocMvc.perform(post("/gestionar-alquiler/usuarios/alquiler")
                 .contentType(APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(alquiler)))
+                .content(objectMapper.writeValueAsString(comandoUsuarioAlquiler)))
                 .andExpect(status().isOk());
 
     }
 
     @Test
-    public void pagar() throws Exception{
+    public void registrarAlquilerUsuarioRegistrado() throws Exception{
         // arrange
-        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+        ComandoAlquiler comandoAlquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/alquiler/montoTotal?nationalId=51658659&dateAndTimeCheckout=2021-03-24T13:40:00")
+        mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler?cedula=51658659&idJetSki=BC001&tiempoRenta=11&fechaYHoraRenta=2021-03-29T21:00:00")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(comandoAlquiler)))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void calcularMontoAlquiler() throws Exception{
+        // Arrange
+        ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+        // act - assert
+        mocMvc.perform(post("/gestionar-alquiler/usuario/monto?cedula=1098682980&fechaYHoraEntrega=2021-03-31T09:30:00")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
-                .andExpect(content().string("1550000.0"));
+                .andExpect(content().string("50000.0")); // calculo monto;
     }
 
 }
+

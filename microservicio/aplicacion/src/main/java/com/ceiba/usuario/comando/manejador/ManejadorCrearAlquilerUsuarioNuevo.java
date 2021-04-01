@@ -1,7 +1,5 @@
 package com.ceiba.usuario.comando.manejador;
 
-import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
-import com.ceiba.usuario.comando.dtoComando.ComandoUsuario;
 import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
@@ -30,6 +28,8 @@ public class ManejadorCrearAlquilerUsuarioNuevo {
         this.servicioCrearUsuario.crearUsuario(usuario);
         this.servicioCrearAlquiler.crearAlquiler(alquiler);
     }
+
+
 
 
 }
