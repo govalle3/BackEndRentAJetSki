@@ -1,11 +1,7 @@
 package com.ceiba.usuario.controlador;
 
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
@@ -23,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.nio.charset.Charset;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -55,10 +50,10 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void registrarAlquilerUsuarioRegistrado() throws Exception{
         // arrange
-        ComandoAlquiler comandoAlquiler = new ComandoAlquilerTestDataBuilder().build();
+        ComandoAlquiler comandoAlquiler = new ComandoAlquilerTestDataBuilder().conNationalId(51658L).conIdJetSki("BC002").conRentTime(15).conDateAndTimeRent(LocalDateTime.of(2021,Month.MARCH,01,11,10,00)).build();
 
         // act - assert
-        mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler?cedula=51658&idJetSki=BC002&tiempoRenta=15&fechaYHoraRenta=2021-04-01T11:10:00")
+        mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(comandoAlquiler)))
                 .andExpect(status().isOk());
