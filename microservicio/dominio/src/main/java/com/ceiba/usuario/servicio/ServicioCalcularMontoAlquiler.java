@@ -1,5 +1,6 @@
 package com.ceiba.usuario.servicio;
 
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 
 import java.time.Duration;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 
 public class ServicioCalcularMontoAlquiler {
 
+    public static final String NO_HA_ELEGIDO_UNA_MOTO_CORRECTAMENTE = "No ha elegido correctamente una moto";
     public static final double PRECIO_MOTO_1_5000 = 5000;
     public static final double PRECIO_MOTO_2_7000 = 7000;
     public static final double PRECIO_MOTO_3_9000 = 9000;
@@ -26,12 +28,14 @@ public class ServicioCalcularMontoAlquiler {
         String idJetSki = alquiler.getIdJetSki();
         if ("BC001".equals(idJetSki)) {
             valorMinutoRenta = PRECIO_MOTO_1_5000;
-        }
-        if ("BC002".equals(idJetSki)) {
-            valorMinutoRenta = PRECIO_MOTO_2_7000;
-        }
-        if ("BC003".equals(idJetSki)) {
-            valorMinutoRenta = PRECIO_MOTO_3_9000;
+            if ("BC002".equals(idJetSki)) {
+                valorMinutoRenta = PRECIO_MOTO_2_7000;
+                if ("BC003".equals(idJetSki)) {
+                    valorMinutoRenta = PRECIO_MOTO_3_9000;
+                }
+            }
+        }else{
+            throw new ExcepcionValorInvalido(NO_HA_ELEGIDO_UNA_MOTO_CORRECTAMENTE);
         }
         return valorMinutoRenta;
     }
