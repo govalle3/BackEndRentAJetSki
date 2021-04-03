@@ -1,6 +1,5 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 
 import java.time.Duration;
