@@ -37,7 +37,9 @@ public class ComandoControladorAlquiler {
     @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
     public ComandoRespuesta<Long> registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
+
         return manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler);
+
     }
 
     @PostMapping(path = "/usuarios-registrados/alquiler")

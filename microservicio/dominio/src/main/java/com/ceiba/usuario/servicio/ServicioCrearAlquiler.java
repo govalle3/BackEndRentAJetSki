@@ -34,6 +34,8 @@ public class ServicioCrearAlquiler {
 
     public Long crear(Alquiler alquiler) {
         return this.repositorioRentAJetSki.crearAlquiler(alquiler);
+
+
     }
 
     private void validarSiElLugarSeEncuentraAbierto() {
