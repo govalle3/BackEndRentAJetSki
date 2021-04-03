@@ -1,12 +1,13 @@
 package com.ceiba.usuario.comando.manejador;
 
+import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.modelo.dto.DtoAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.servicio.ServicioPagarAlquiler;
 
-public class ManejadorPagarAlquiler {
+public class ManejadorPagarAlquiler implements ManejadorComando<Long> {
 
     private final ServicioPagarAlquiler servicioPagarAlquiler;
     private final FabricaAlquiler fabricaAlquiler;
@@ -19,7 +20,8 @@ public class ManejadorPagarAlquiler {
         this.fabricaAlquiler = fabricaAlquiler;
     }
 
-    public void pagar(Long nationalId) {
+    @Override
+    public void ejecutar(Long nationalId) {
         DtoAlquiler dtoAlquiler = daoRentAJetSki.buscarAlquilerNoPagadoAun(nationalId);
         Alquiler alquiler = this.fabricaAlquiler.crear(dtoAlquiler);
         servicioPagarAlquiler.pagarAlquiler(alquiler);

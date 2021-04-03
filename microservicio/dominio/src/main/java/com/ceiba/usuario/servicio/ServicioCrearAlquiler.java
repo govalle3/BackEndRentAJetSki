@@ -6,6 +6,9 @@ import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+
 public class ServicioCrearAlquiler {
 
     public static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
@@ -22,14 +25,23 @@ public class ServicioCrearAlquiler {
         this.daoRentAJetSki = daoRentAJetSki;
     }
 
-    public void crearAlquiler(Alquiler alquiler) {
+    public Long crearAlquiler(Alquiler alquiler) {
+        validarSiElLugarSeEncuentraAbierto(); // logica del alquiler
         validarMinimoDiezMinutosDeAlquiler(alquiler.getTiempoRenta());
         validarExistenciaPreviaMotoSolicitada(alquiler.getIdJetSki());
-        crear(alquiler);
+        return crear(alquiler);
     }
 
-    public void crear(Alquiler alquiler) {
-        this.repositorioRentAJetSki.crearAlquiler(alquiler);
+    public Long crear(Alquiler alquiler) {
+        return this.repositorioRentAJetSki.crearAlquiler(alquiler);
+    }
+
+    private void validarSiElLugarSeEncuentraAbierto() {
+        DayOfWeek diaActual = LocalDateTime.now().getDayOfWeek();
+        boolean esMiercoles = diaActual.name().equals(DayOfWeek.TUESDAY.name());
+        if(esMiercoles){
+            throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
+        }
     }
 
     private void validarMinimoDiezMinutosDeAlquiler(Integer tiempoRenta) {

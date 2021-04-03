@@ -1,13 +1,15 @@
 package com.ceiba.usuario.comando.manejador;
 
+import com.ceiba.ComandoRespuesta;
+import com.ceiba.manejador.ManejadorComandoRespuesta;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.fabrica.FabricaAlquiler;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.servicio.ServicioCrearAlquiler;
 import com.ceiba.usuario.servicio.ServicioValidarExistenciaUsuarioYPagosAlDia;
 
-import java.time.LocalDateTime;
 
-public class ManejadorCrearAlquilerUsuarioRegistrado {
+public class ManejadorCrearAlquilerUsuarioRegistrado implements ManejadorComandoRespuesta<ComandoAlquiler, ComandoRespuesta<Long>> {
 
     private final FabricaAlquiler fabricaAlquiler;
     private final ServicioCrearAlquiler servicioCrearAlquiler;
@@ -19,9 +21,10 @@ public class ManejadorCrearAlquilerUsuarioRegistrado {
         this.servicioCrearAlquiler = servicioCrearAlquiler;
     }
 
-    public void ejecutar(Long cedula, String idJetSki, Integer tiempoRentado, LocalDateTime horaYFechaRenta) {
-        Alquiler alquiler = this.fabricaAlquiler.crearRegistroUsuarioExistente(cedula,idJetSki,tiempoRentado,horaYFechaRenta);
+    @Override
+    public ComandoRespuesta<Long> ejecutar(ComandoAlquiler comando) {
+        Alquiler alquiler = this.fabricaAlquiler.crearRegistroUsuarioExistente(comando.getCedula(), comando.getIdJetSki(),comando.getTiempoRenta(), comando.getFechaYHoraRenta());
         this.servicioValidarExistenciaUsuarioYPagosAlDia.validarExistenciaUsuarioYPagosAlDia(alquiler);
-        this.servicioCrearAlquiler.crearAlquiler(alquiler);
+        return new ComandoRespuesta<>(this.servicioCrearAlquiler.crearAlquiler(alquiler));
     }
 }

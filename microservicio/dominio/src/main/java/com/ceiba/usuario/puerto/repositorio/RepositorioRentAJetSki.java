@@ -10,7 +10,7 @@ public interface RepositorioRentAJetSki {
      * Permite crear un alquiler
      * @param alquiler
      */
-    void crearAlquiler(Alquiler alquiler);
+    Long crearAlquiler(Alquiler alquiler);
 
     /**
      * Permite actualizar el pago de un alquiler

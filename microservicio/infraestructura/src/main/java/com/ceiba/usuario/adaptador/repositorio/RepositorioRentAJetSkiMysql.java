@@ -28,8 +28,8 @@ public class RepositorioRentAJetSkiMysql implements RepositorioRentAJetSki {
     }
 
     @Override
-    public void crearAlquiler(Alquiler alquiler) {
-        this.customNamedParameterJdbcTemplate.crear(alquiler, sqlCrearAlquiler);
+    public Long crearAlquiler(Alquiler alquiler) {
+        return this.customNamedParameterJdbcTemplate.crear(alquiler, sqlCrearAlquiler);
     }
 
     @Override

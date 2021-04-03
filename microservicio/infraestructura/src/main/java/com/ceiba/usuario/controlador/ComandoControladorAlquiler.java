@@ -1,5 +1,7 @@
 package com.ceiba.usuario.controlador;
 
+import com.ceiba.ComandoRespuesta;
+import com.ceiba.usuario.comando.dtoComando.ComandoAlquiler;
 import com.ceiba.usuario.comando.dtoComando.ComandoUsuarioAlquiler;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioNuevo;
 import com.ceiba.usuario.comando.manejador.ManejadorCrearAlquilerUsuarioRegistrado;
@@ -34,15 +36,14 @@ public class ComandoControladorAlquiler {
 
     @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
-    public void registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
-            manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler);
+    public ComandoRespuesta<Long> registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
+        return manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler);
     }
 
     @PostMapping(path = "/usuarios-registrados/alquiler")
     @ApiOperation("Crear Alquiler con usuario registrado")
-    public void registrarAlquilerUsuarioRegistrado(@RequestParam("cedula") String cedula, @RequestParam("idJetSki") String idJetSki, @RequestParam("tiempoRenta") Integer tiempoRenta, @RequestParam("fechaYHoraRenta") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaYHoraRenta) {
-        long lonCedula = Long.parseLong(cedula);
-        manejadorCrearAlquilerUsuarioRegistrado.ejecutar(lonCedula, idJetSki, tiempoRenta, fechaYHoraRenta);
+    public ComandoRespuesta<Long> registrarAlquilerUsuarioRegistrado(@RequestBody ComandoAlquiler comandoAlquiler) {
+        return manejadorCrearAlquilerUsuarioRegistrado.ejecutar(comandoAlquiler);
     }
 
     @PostMapping(path = "/usuario/monto")
@@ -56,7 +57,7 @@ public class ComandoControladorAlquiler {
     @ApiOperation("Paga un Alquiler según el monto")
     public void pagoMontoAlquiler(@RequestParam("cedula") String cedula) {
         long lonNationalId = Long.parseLong(cedula);
-        manejadorPagoAlquiler.pagar(lonNationalId);
+        manejadorPagoAlquiler.ejecutar(lonNationalId);
     }
 
 }

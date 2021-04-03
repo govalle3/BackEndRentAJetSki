@@ -26,7 +26,7 @@ public class ServicioCrearUsuario {
     }
 
     public void crearUsuario(Usuario usuario){
-        validarSiElLugarSeEncuentraAbierto(); // logica del alquiler
+
         validarSiEsMayorDeEdad(usuario.getFechaNacido());
         validarSiExisteUsuario(usuario);
         crear(usuario);
@@ -34,14 +34,6 @@ public class ServicioCrearUsuario {
 
     private void crear(Usuario usuario) {
         this.repositorioRentAJetSki.crearUsuario(usuario);
-    }
-
-    private void validarSiElLugarSeEncuentraAbierto() {
-        DayOfWeek diaActual = LocalDateTime.now().getDayOfWeek();
-        boolean esMiercoles = diaActual.name().equals(DayOfWeek.TUESDAY.name());
-        if(esMiercoles){
-            throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
-        }
     }
 
     private void validarSiEsMayorDeEdad(LocalDate edad) {
