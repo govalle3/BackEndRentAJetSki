@@ -11,7 +11,6 @@ import java.time.Period;
 public class ServicioCrearUsuario {
 
     public static final String EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA = "El usuario ya existe en el sistema";
-    public static final String LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO = "Los dias miercoles no se presta servicio";
     public static final String SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD = "Solo se presta servicio a mayores de edad";
     public static final Integer EDAD_PERMITIDA_18 = 18;
     private final RepositorioRentAJetSki repositorioRentAJetSki;
