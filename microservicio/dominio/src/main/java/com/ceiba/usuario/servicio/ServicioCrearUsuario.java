@@ -1,6 +1,7 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioExistente;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioMenorDeEdad;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
@@ -35,13 +36,13 @@ public class ServicioCrearUsuario {
     private void validarSiEsMayorDeEdad(LocalDate edad) {
         boolean esMenorDeEdad = Period.between(edad, LocalDate.now()).getYears() < EDAD_PERMITIDA_18;
         if(esMenorDeEdad){
-            throw new ExcepcionDuplicidad(SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD);
+            throw new ExcepcionUsuarioMenorDeEdad(SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD);
         }
     }
 
     private void validarSiExisteUsuario(Usuario usuario) {
         if(this.daoRentAJetSki.existeUsuarioPorCedula(usuario.getCedula())) {
-            throw new ExcepcionDuplicidad(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
+            throw new ExcepcionUsuarioExistente(EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
     }
 

@@ -1,7 +1,8 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.usuario.excepcion.ExcepcionMotoAlquilada;
+import com.ceiba.usuario.excepcion.ExcepcionNoHayServicio;
+import com.ceiba.usuario.excepcion.ExcepcionTiempoAlquilerMenosDiezMinutos;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
@@ -26,7 +27,7 @@ public class ServicioCrearAlquiler {
     }
 
     public Long crearAlquiler(Alquiler alquiler) {
-        validarSiElLugarSeEncuentraAbierto(); // logica del alquiler
+        validarSiElLugarSeEncuentraAbierto();
         validarMinimoDiezMinutosDeAlquiler(alquiler.getTiempoRenta());
         validarExistenciaPreviaMotoSolicitada(alquiler.getIdJetSki());
         return crear(alquiler);
@@ -42,20 +43,20 @@ public class ServicioCrearAlquiler {
         DayOfWeek diaActual = LocalDateTime.now().getDayOfWeek();
         boolean esMiercoles = diaActual.name().equals(DayOfWeek.TUESDAY.name());
         if(esMiercoles){
-            throw new ExcepcionValorInvalido(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
+            throw new ExcepcionNoHayServicio(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
         }
     }
 
     private void validarMinimoDiezMinutosDeAlquiler(Integer tiempoRenta) {
         int tiempoElegido = tiempoRenta;
          if(tiempoElegido < MINIMO_TIEMPO_ALQUILER_10) {
-            throw new ExcepcionValorInvalido(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
+            throw new ExcepcionTiempoAlquilerMenosDiezMinutos(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
         }
     }
 
     private void validarExistenciaPreviaMotoSolicitada(String idJetSki) {
         if(this.daoRentAJetSki.existeAlquilerMoto(idJetSki)) {
-            throw new ExcepcionDuplicidad(LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
+            throw new ExcepcionMotoAlquilada(LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
         }
     }
 }

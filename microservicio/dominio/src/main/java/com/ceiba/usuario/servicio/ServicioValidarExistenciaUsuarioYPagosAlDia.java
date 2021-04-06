@@ -1,6 +1,7 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioMoroso;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioNoExistente;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 
@@ -24,14 +25,14 @@ public class ServicioValidarExistenciaUsuarioYPagosAlDia {
     public void validarExistenciaUsuario(Long cedula) {
 
         if (!daoRentAJetSki.existeUsuarioPorCedula(cedula)) {
-            throw new ExcepcionValorInvalido(EL_USUARIO_NO_EXISTE_EN_EL_SISTEMA);
+            throw new ExcepcionUsuarioNoExistente(EL_USUARIO_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
 
     public void validarPagosAlDia(Long cedula) {
 
         if (!daoRentAJetSki.estaAlDiaElUsuario(cedula)) {
-            throw new ExcepcionValorInvalido(EL_USUARIO_DEBE_PAGAR_ALQUILERES_PENDIENTES);
+            throw new ExcepcionUsuarioMoroso(EL_USUARIO_DEBE_PAGAR_ALQUILERES_PENDIENTES);
         }
     }
 }
