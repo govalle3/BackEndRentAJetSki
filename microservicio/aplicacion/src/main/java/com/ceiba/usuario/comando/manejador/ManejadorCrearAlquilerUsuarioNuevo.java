@@ -29,7 +29,7 @@ public class ManejadorCrearAlquilerUsuarioNuevo implements ManejadorComandoRespu
         Alquiler alquiler = this.fabricaAlquiler.crearAlquilerUsuarioRegistrado(comandoUsuarioAlquiler);
         Usuario usuario = this.fabricaUsuario.crearUsuario(comandoUsuarioAlquiler);
         this.servicioCrearUsuario.crearUsuario(usuario);
-        return new ComandoRespuesta<>(this.servicioCrearAlquiler.crearAlquiler(alquiler));
+        return new ComandoRespuesta<>(this.servicioCrearAlquiler.crearAlquiler(alquiler)); // aca explota
     }
 
 

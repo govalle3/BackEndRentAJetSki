@@ -29,13 +29,13 @@ public class ServicioCrearAlquiler {
     public Long crearAlquiler(Alquiler alquiler) {
         validarSiElLugarSeEncuentraAbierto();
         validarMinimoDiezMinutosDeAlquiler(alquiler.getTiempoRenta());
-        validarExistenciaPreviaMotoSolicitada(alquiler.getIdJetSki());
+        validarAlquilerPrevioMotoSolicitada(alquiler.getIdJetSki());
         return crear(alquiler);
     }
 
     public Long crear(Alquiler alquiler) {
-        return this.repositorioRentAJetSki.crearAlquiler(alquiler);
 
+        return this.repositorioRentAJetSki.crearAlquiler(alquiler);
 
     }
 
@@ -48,13 +48,14 @@ public class ServicioCrearAlquiler {
     }
 
     private void validarMinimoDiezMinutosDeAlquiler(Integer tiempoRenta) {
-        int tiempoElegido = tiempoRenta;
+
+         int tiempoElegido = tiempoRenta;
          if(tiempoElegido < MINIMO_TIEMPO_ALQUILER_10) {
             throw new ExcepcionTiempoAlquilerMenosDiezMinutos(EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
         }
     }
 
-    private void validarExistenciaPreviaMotoSolicitada(String idJetSki) {
+    private void validarAlquilerPrevioMotoSolicitada(String idJetSki) {
         if(this.daoRentAJetSki.existeAlquilerMoto(idJetSki)) {
             throw new ExcepcionMotoAlquilada(LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
         }
