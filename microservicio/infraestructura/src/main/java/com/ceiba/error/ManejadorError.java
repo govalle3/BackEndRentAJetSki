@@ -18,12 +18,12 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
     private static final ConcurrentHashMap<String, Integer> ERRORS = new ConcurrentHashMap<>();
 
     public ManejadorError() {
-        ERRORS.put(ExcepcionMotoAlquilada.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
-        ERRORS.put(ExcepcionNoHayServicio.class.getSimpleName(), HttpStatus.FORBIDDEN.value());
-        ERRORS.put(ExcepcionTiempoAlquilerMenosDiezMinutos.class.getSimpleName(), HttpStatus.FORBIDDEN.value());
+        ERRORS.put(ExcepcionMotoAlquilada.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
+        ERRORS.put(ExcepcionNoHayServicio.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
+        ERRORS.put(ExcepcionTiempoAlquilerMenosDiezMinutos.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
         ERRORS.put(ExcepcionUsuarioMenorDeEdad.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionUsuarioMoroso.class.getSimpleName(), HttpStatus.FORBIDDEN.value());
-        ERRORS.put(ExcepcionUsuarioNoExistente.class.getSimpleName(), HttpStatus.FORBIDDEN.value());
+        ERRORS.put(ExcepcionUsuarioMoroso.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
+        ERRORS.put(ExcepcionUsuarioNoExistente.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
     }
 
     @ExceptionHandler(Exception.class)
