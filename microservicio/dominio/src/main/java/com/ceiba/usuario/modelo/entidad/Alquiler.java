@@ -39,24 +39,12 @@ public class Alquiler {
         return cedula;
     }
 
-    public void setCedula(Long cedula) {
-        this.cedula = cedula;
-    }
-
     public String getIdJetSki() {
         return idJetSki;
     }
 
-    public void setIdJetSki(String idJetSki) {
-        this.idJetSki = idJetSki;
-    }
-
     public Integer getTiempoRenta() {
         return tiempoRenta;
-    }
-
-    public void setTiempoRenta(Integer tiempoRenta) {
-        this.tiempoRenta = tiempoRenta;
     }
 
     public LocalDateTime getFechaYHoraRenta() {

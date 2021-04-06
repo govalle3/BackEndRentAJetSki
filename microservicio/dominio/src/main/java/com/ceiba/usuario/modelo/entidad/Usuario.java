@@ -32,10 +32,6 @@ public class Usuario {
         return cedula;
     }
 
-    public void setCedula(Long cedula) {
-        this.cedula = cedula;
-    }
-
     public LocalDate getFechaNacido() {
         return fechaNacido;
     }
