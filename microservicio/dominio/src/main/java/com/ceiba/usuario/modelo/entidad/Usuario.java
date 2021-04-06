@@ -40,15 +40,4 @@ public class Usuario {
         return fechaNacido;
     }
 
-    public void setFechaNacido(LocalDate fechaNacido) {
-        this.fechaNacido = fechaNacido;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 }
