@@ -41,7 +41,7 @@ public class ServicioCrearAlquiler {
 
     private void validarSiElLugarSeEncuentraAbierto() {
         DayOfWeek diaActual = LocalDateTime.now().getDayOfWeek();
-        boolean esMiercoles = diaActual.name().equals(DayOfWeek.TUESDAY.name());
+        boolean esMiercoles = diaActual.name().equals(DayOfWeek.WEDNESDAY.name());
         if(esMiercoles){
             throw new ExcepcionNoHayServicio(LOS_DIAS_MIERCOLES_NO_SE_PRESTA_SERVICIO);
         }
