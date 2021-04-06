@@ -1,6 +1,7 @@
 package com.ceiba;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioExistente;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioMenorDeEdad;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
@@ -40,7 +41,7 @@ public class ServicioCrearUsuarioTest {
         DaoRentAJetSki daoRentAJetSki = mock(DaoRentAJetSki.class);
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioRentAJetSki, daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearUsuario.crearUsuario(usuario), ExcepcionDuplicidad.class,
+        BasePrueba.assertThrows(() -> servicioCrearUsuario.crearUsuario(usuario), ExcepcionUsuarioMenorDeEdad.class,
                 ServicioCrearAlquiler.SOLO_SE_PRESTA_SERVICIO_A_MAYORES_DE_EDAD);
     }
 
@@ -54,7 +55,7 @@ public class ServicioCrearUsuarioTest {
         when(daoRentAJetSki.existeUsuarioPorCedula(usuario.getCedula())).thenReturn(true);
         ServicioCrearUsuario servicioCrearUsuario = new ServicioCrearUsuario(repositorioRentAJetSki, daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearUsuario.crearUsuario(usuario), ExcepcionDuplicidad.class,
+        BasePrueba.assertThrows(() -> servicioCrearUsuario.crearUsuario(usuario), ExcepcionUsuarioExistente.class,
                 ServicioCrearAlquiler.EL_USUARIO_YA_EXISTE_EN_EL_SISTEMA);
     }
 

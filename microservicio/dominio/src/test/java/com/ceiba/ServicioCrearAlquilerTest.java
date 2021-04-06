@@ -1,7 +1,7 @@
 package com.ceiba;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.usuario.excepcion.ExcepcionMotoAlquilada;
+import com.ceiba.usuario.excepcion.ExcepcionTiempoAlquilerMenosDiezMinutos;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.puerto.repositorio.RepositorioRentAJetSki;
@@ -39,7 +39,7 @@ public class ServicioCrearAlquilerTest {
         DaoRentAJetSki daoRentAJetSki = mock(DaoRentAJetSki.class);
         ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(repositorioRentAJetSki, daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionValorInvalido.class,
+        BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionTiempoAlquilerMenosDiezMinutos.class,
                 ServicioCrearAlquiler.EL_USUARIO_DEBE_SELECCIONAR_MINIMO_10_MINUTOS_DE_ALQUILER);
 
     }
@@ -53,7 +53,7 @@ public class ServicioCrearAlquilerTest {
         when(daoRentAJetSki.existeAlquilerMoto(alquiler.getIdJetSki())).thenReturn(true);
         ServicioCrearAlquiler servicioCrearAlquiler = new ServicioCrearAlquiler(anyObject(), daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionDuplicidad.class,
+        BasePrueba.assertThrows(() -> servicioCrearAlquiler.crearAlquiler(alquiler), ExcepcionMotoAlquilada.class,
                 ServicioCrearAlquiler.LA_MOTO_SOLICITADA_SE_ENCUENTRA_ALQUILADA);
     }
 

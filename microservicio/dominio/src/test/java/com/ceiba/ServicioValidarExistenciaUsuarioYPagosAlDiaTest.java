@@ -1,6 +1,7 @@
 package com.ceiba;
 
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioMoroso;
+import com.ceiba.usuario.excepcion.ExcepcionUsuarioNoExistente;
 import com.ceiba.usuario.modelo.entidad.Alquiler;
 import com.ceiba.usuario.puerto.dao.DaoRentAJetSki;
 import com.ceiba.usuario.servicio.ServicioValidarExistenciaUsuarioYPagosAlDia;
@@ -34,7 +35,7 @@ public class ServicioValidarExistenciaUsuarioYPagosAlDiaTest {
         when(daoRentAJetSki.existeUsuarioPorCedula(alquiler.getCedula())).thenReturn(false);
         ServicioValidarExistenciaUsuarioYPagosAlDia servicioValidarExistenciaUsuarioYPagosAlDia = new ServicioValidarExistenciaUsuarioYPagosAlDia(daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioValidarExistenciaUsuarioYPagosAlDia.validarExistenciaUsuario(alquiler.getCedula()), ExcepcionValorInvalido.class,
+        BasePrueba.assertThrows(() -> servicioValidarExistenciaUsuarioYPagosAlDia.validarExistenciaUsuario(alquiler.getCedula()), ExcepcionUsuarioNoExistente.class,
                 ServicioValidarExistenciaUsuarioYPagosAlDia.EL_USUARIO_NO_EXISTE_EN_EL_SISTEMA);
     }
 
@@ -46,7 +47,7 @@ public class ServicioValidarExistenciaUsuarioYPagosAlDiaTest {
         when(daoRentAJetSki.estaAlDiaElUsuario(alquiler.getCedula())).thenReturn(false);
         ServicioValidarExistenciaUsuarioYPagosAlDia servicioValidarExistenciaUsuarioYPagosAlDia = new ServicioValidarExistenciaUsuarioYPagosAlDia(daoRentAJetSki);
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioValidarExistenciaUsuarioYPagosAlDia.validarPagosAlDia(alquiler.getCedula()), ExcepcionValorInvalido.class,
+        BasePrueba.assertThrows(() -> servicioValidarExistenciaUsuarioYPagosAlDia.validarPagosAlDia(alquiler.getCedula()), ExcepcionUsuarioMoroso.class,
                 ServicioValidarExistenciaUsuarioYPagosAlDia.EL_USUARIO_DEBE_PAGAR_ALQUILERES_PENDIENTES);
     }
 }
