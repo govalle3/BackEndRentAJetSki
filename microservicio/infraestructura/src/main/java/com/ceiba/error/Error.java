@@ -1,6 +1,7 @@
 package com.ceiba.error;
 
 public class Error {
+
     private final String exceptionName;
     private final String message;
 

@@ -1,7 +1,8 @@
 package com.ceiba.usuario.controlador;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.ceiba.ApplicationMock;
@@ -40,11 +41,17 @@ public class ComandoControladorAlquilerTest {
     public void crearAlquilerUsuarioNuevo() throws Exception{
         // arrange
         ComandoUsuarioAlquiler comandoUsuarioAlquiler = new ComandoUsuarioAlquilerTestDataBuilder().conCedula(123456L).build();
-        // act - assert
+        // act
         mocMvc.perform(post("/gestionar-alquiler/usuarios/alquiler")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(comandoUsuarioAlquiler)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'valor': 4}"));
+        // assert
+        mocMvc.perform(get("/gestionar-alquiler/alquiler/por-pago")
+                .contentType(APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(1))));
 
     }
 
@@ -57,7 +64,9 @@ public class ComandoControladorAlquilerTest {
         mocMvc.perform(post("/gestionar-alquiler/usuarios-registrados/alquiler")
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(comandoAlquiler)))
-                .andExpect(status().isOk()); // validar el content para validar el tema de la fima
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'valor': 5}"));
+
 
     }
 
@@ -68,7 +77,7 @@ public class ComandoControladorAlquilerTest {
         mocMvc.perform(post("/gestionar-alquiler/usuario/monto?cedula=1234&fechaYHoraEntrega=2021-03-31T09:30:00")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
-                .andExpect(content().string("50000.0")); // calculo monto;
+                .andExpect(content().string("50000.0"));
     }
 
     @Test
@@ -79,6 +88,11 @@ public class ComandoControladorAlquilerTest {
         mocMvc.perform(put("/gestionar-alquiler/usuario/pago?cedula=12345")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
+        // assert
+        mocMvc.perform(get("/gestionar-alquiler/alquiler/pagados")
+                .contentType(APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
 }

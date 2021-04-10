@@ -37,16 +37,13 @@ public class ComandoControladorAlquiler {
     @PostMapping(path = "/usuarios/alquiler")
     @ApiOperation("Crea Usuario y un alquiler")
     public ComandoRespuesta<Long> registrarAlquilerUsuarioNuevo(@RequestBody ComandoUsuarioAlquiler comandoUsuarioAlquiler){
-
         return manejadorCrearAlquilerUsuarioNuevo.ejecutar(comandoUsuarioAlquiler);
-
     }
 
     @PostMapping(path = "/usuarios-registrados/alquiler")
     @ApiOperation("Crear Alquiler con usuario registrado")
     public ComandoRespuesta<Long> registrarAlquilerUsuarioRegistrado(@RequestBody ComandoAlquiler comandoAlquiler) {
         return manejadorCrearAlquilerUsuarioRegistrado.ejecutar(comandoAlquiler);
-
     }
 
     @PostMapping(path = "/usuario/monto")

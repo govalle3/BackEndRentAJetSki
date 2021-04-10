@@ -3,12 +3,13 @@ import com.ceiba.usuario.excepcion.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 
-
+@ControllerAdvice
 public class ManejadorError extends ResponseEntityExceptionHandler {
 
     private static final Logger LOG = (Logger) LoggerFactory.getLogger(ManejadorError.class);
@@ -18,6 +19,7 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
     private static final ConcurrentHashMap<String, Integer> ERRORS = new ConcurrentHashMap<>();
 
     public ManejadorError() {
+
         ERRORS.put(ExcepcionMotoAlquilada.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
         ERRORS.put(ExcepcionNoHayServicio.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
         ERRORS.put(ExcepcionTiempoAlquilerMenosDiezMinutos.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());

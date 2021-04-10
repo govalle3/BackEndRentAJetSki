@@ -7,7 +7,7 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 
 public class Alquiler {
 
-    private static final String SE_DEBE_INGRESAR_LA_CEDULA = "Se debe ingresar la cédula";
+    private static final String SE_DEBE_INGRESAR_LA_CEDULA = "Se debe ingresar la cedula";
     private static final String SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA = "Se debe seleccionar una moto acuática";
     private static final String SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER = "Se debe seleccionar el tiempo de alquiler";
     private static final String NO_SE_PERMITEN_NUMEROS_NEGATIVOS = "No se permiten números negativos";
