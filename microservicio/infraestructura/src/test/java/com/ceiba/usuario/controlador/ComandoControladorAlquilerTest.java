@@ -84,7 +84,7 @@ public class ComandoControladorAlquilerTest {
     public void pagarAlquiler() throws Exception{
         // Arrange
 
-        // act - assert
+        // act
         mocMvc.perform(put("/gestionar-alquiler/usuario/pago?cedula=12345")
                 .contentType(APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());

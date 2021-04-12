@@ -36,4 +36,7 @@ public class Usuario {
         return fechaNacido;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 }
