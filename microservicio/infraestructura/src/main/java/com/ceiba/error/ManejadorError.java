@@ -20,12 +20,12 @@ public class ManejadorError extends ResponseEntityExceptionHandler {
 
     public ManejadorError() {
 
-        ERRORS.put(ExcepcionMotoAlquilada.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionNoHayServicio.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionTiempoAlquilerMenosDiezMinutos.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionUsuarioMenorDeEdad.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionUsuarioMoroso.class.getSimpleName(), HttpStatus.NOT_ACCEPTABLE.value());
-        ERRORS.put(ExcepcionUsuarioNoExistente.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
+        ERRORS.put(ExcepcionMotoAlquilada.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        ERRORS.put(ExcepcionNoHayServicio.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        ERRORS.put(ExcepcionTiempoAlquilerMenosDiezMinutos.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        ERRORS.put(ExcepcionUsuarioMenorDeEdad.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        ERRORS.put(ExcepcionUsuarioMoroso.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        ERRORS.put(ExcepcionUsuarioNoExistente.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ExceptionHandler(Exception.class)

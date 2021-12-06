@@ -26,8 +26,8 @@ public class ManejadorCrearAlquilerUsuarioNuevo implements ManejadorComandoRespu
     }
 
     public ComandoRespuesta<Long> ejecutar(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // Estos datos vienen del frontEnd
-        Alquiler alquiler = this.fabricaAlquiler.crearAlquilerUsuarioRegistrado(comandoUsuarioAlquiler);
-        Usuario usuario = this.fabricaUsuario.crearUsuario(comandoUsuarioAlquiler);
+        Alquiler alquiler = fabricaAlquiler.crearAlquiler(comandoUsuarioAlquiler);
+        Usuario usuario = fabricaUsuario.crearUsuario(comandoUsuarioAlquiler);
         this.servicioCrearUsuario.crearUsuario(usuario);
         return new ComandoRespuesta<>(this.servicioCrearAlquiler.crearAlquiler(alquiler)); // aca explota
     }

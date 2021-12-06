@@ -10,9 +10,8 @@ import java.time.LocalDateTime;
 @Component
 public class FabricaAlquiler {
 
-    public Alquiler crearAlquilerUsuarioRegistrado(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // viene del front end
-        return new Alquiler(
-                comandoUsuarioAlquiler.getCedula(),
+    public Alquiler crearAlquiler(ComandoUsuarioAlquiler comandoUsuarioAlquiler) { // viene del front end
+        return new Alquiler(comandoUsuarioAlquiler.getCedula(),
                 comandoUsuarioAlquiler.getIdJetSki(),
                 comandoUsuarioAlquiler.getTiempoRenta(),
                 comandoUsuarioAlquiler.getFechaYHoraRenta()

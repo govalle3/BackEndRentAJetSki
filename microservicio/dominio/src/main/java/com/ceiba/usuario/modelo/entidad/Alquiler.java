@@ -11,7 +11,6 @@ public class Alquiler {
     private static final String SE_DEBE_SELECCIONAR_UNA_MOTO_ACUATICA = "Se debe seleccionar una moto acuática";
     private static final String SE_DEBE_SELECCIONAR_TIEMPO_DE_ALQUILER = "Se debe seleccionar el tiempo de alquiler";
     private static final String NO_SE_PERMITEN_NUMEROS_NEGATIVOS = "No se permiten números negativos";
-
     private static final String SOLO_SE_PERMITEN_CARACTERES_NUMERICOS = "Solo se permiten caracteres numéricos";
 
     private Long cedula;

@@ -15,7 +15,7 @@ spring:
       driver-class-name: org.h2.Driver
       type: com.zaxxer.hikari.HikariDataSource
       jdbcUrl: jdbc:h2:mem:testdb
-      username: govalle3
-      password: 123456789
+      username: sa
+      password: 123
       hikari:
          poolName: pool

@@ -31,8 +31,6 @@ public class ServicioCrearUsuarioTest {
         verify(daoRentAJetSki, times(1)).existeUsuarioPorCedula(usuario.getCedula());
     }
 
-
-
     @Test
     public void crearUsuarioConExcepcionLanzadaPorMenorDeEdad(){
         // Arrange
